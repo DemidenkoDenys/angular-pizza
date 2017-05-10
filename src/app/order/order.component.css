@@ -1,0 +1,68 @@
+*:focus{
+  outline: none;
+}
+
+#order{
+  height: 400px;
+  background: url(../img/order-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#order form{
+  width: 30%;
+  padding: 50px 70px;
+  position: relative;
+}
+
+#order form .input-wrapper{
+  position: relative;
+  display: block;
+  height: 40px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+
+}
+
+#order form input{
+  display: block;
+  width: 90%;
+  height: 30px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+
+  background: rgba(255, 255, 255, .2);
+  border: 2px solid rgba(250, 0, 250, .2);
+}
+
+#order form .input-wrapper label {
+  position: absolute;
+  display: block;
+  font-size: 1.3em;
+  color: white;
+  transition: 1s;
+  cursor: text;
+  left: 10px;
+}
+
+#order form .input-wrapper label.clear{
+  top: 10px;
+}
+
+#order form .input-wrapper label.fill{
+  top: -15px;
+  left: 0px;
+  font-size: 0.8em;
+}
+#order form input:focus{
+  background: rgba(255, 255, 255, .6);
+}
+
+#order form input:focus + label.clear{
+  top: -15px;
+  left: 0px;
+  font-size: 0.8em;
+}

@@ -1,0 +1,22 @@
+#menu{
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  background-color: lightblue;
+  height: 100%;
+}
+
+.menu-item{
+  display: block;
+  padding: 0 20px;
+  line-height: 50px;
+  background-color: lightblue;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menu-item:hover{
+  opacity: 0.5;
+}
