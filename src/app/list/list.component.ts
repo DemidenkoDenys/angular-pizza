@@ -23,9 +23,4 @@ export class ListComponent {
 
   pizzas = pizzas;
 
-  showInfo(e: any){
-    console.log(e.value);
-    return false;
-  }
-
 }

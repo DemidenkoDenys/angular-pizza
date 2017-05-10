@@ -1,5 +1,26 @@
 <section id='list'>
   <div *ngFor='let item of pizzas' class='list-item'>
     <img src="{{ item }}" alt="">
+    <div class='full-list-item'>
+      <img src="{{ item }}" alt="">
+      <hr noshape />
+      <div class="title">Милликано</div>
+      <div class="des">блаблаблаблба</div>
+      <div class="count-wrapper">
+        <form action="" class="form-count">
+          <button>-</button>
+          <input type="number">
+          <button>+</button>
+        </form>
+        <button class="size1">28</button>
+        <button class="size2">32</button>
+      </div>
+      <div class="weight">200 гр</div>
+      <div class="price">
+        140 грн
+        <button class="order-button">Заказать</button>
+      </div>
+
+    </div>
   </div>
 </section>

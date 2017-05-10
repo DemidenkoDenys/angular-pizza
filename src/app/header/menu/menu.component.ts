@@ -10,7 +10,7 @@ export class MenuComponent implements OnInit {
   menus: string[] = [];
 
   constructor() {
-    this.menus = ['Main', 'Pizza', 'Create', 'Order', 'Basket'];
+    this.menus = ['Main', 'Pizza', 'Create', 'Order'];
   }
 
   ngOnInit() {

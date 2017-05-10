@@ -15,8 +15,38 @@
   background-color: lightblue;
   text-decoration: none;
   text-transform: uppercase;
+  font-family: Arial;
+  font-size: 1.2em;
 }
 
 .menu-item:hover{
   opacity: 0.5;
+}
+
+.basket-item{
+  position: relative;
+}
+
+.basket-item .basket-icon{
+  font-size: 2em;
+  line-height: 50px;
+}
+
+.basket-item .basket-amount{
+  display: none;
+}
+
+.basket-item .basket-amount.ordered{
+  position: absolute;
+  display: block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  top: 4px;
+  right: 14px;
+  color: white;
+  background-color: red;
+  border-radius: 9px;
+  text-align: center;
+  font-size: 12px;
 }

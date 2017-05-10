@@ -1,30 +1,45 @@
-.header{
+@font-face {font-family: "Hot Pizza";
+    src: url("../fonts/Hot Pizza/Hot Pizza.eot");
+    src: url("../fonts/Hot Pizza/Hot Pizza.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Hot Pizza/Hot Pizza.woff2") format("woff2"),
+    url("../fonts/Hot Pizza/Hot Pizza.woff") format("woff"),
+    url("../fonts/Hot Pizza/Hot Pizza.ttf") format("truetype"),
+    url("../fonts/Hot Pizza/Hot Pizza.svg#Hot Pizza") format("svg");
+}
+
+#header{
   border: 1px solid lightblue;
   display: flex;
   flex-direction: column;
 }
 
-.header .up-header{
+#header .up-header{
   height: 100px;
   display: -webkit-flex;
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
+  width: 1000px;
+  margin: 10px auto;
 }
 
-.header .down-header{
+#header .down-header{
   height: 50px;
 }
 
-.header h1{
+#header .logo{
   margin: 0;
+  text-decoration: none;
+  font-size: 2em;
   display: inline-block;
-  line-height: 140px;
+  line-height: 165px;
+  font-family: "Hot Pizza";
+  color: rgb(163, 40, 58);
 }
 
-.header-logo{
+.logo-image{
   width: 100px;
   float: left;
-  margin: 0 20px;
+  margin: 0 5px 0 20px;
 }
