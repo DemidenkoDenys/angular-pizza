@@ -1,5 +1,21 @@
 <div id='creator'>
   <div class='circle'>
-    <p class='circle-item' *ngFor='let i of 20'>*</p>
+
+    <div class='base'>
+      <span class='total-price'>
+        120 грн
+      </span>
+    </div>
+
+    <div class='circle-item'
+      *ngFor='let item of ingredients'
+       [ngStyle]="{'left': item.left + 'px', 'top': item.top + 'px', 'background-image': 'url(' + item.url + ')' }">
+
+       <div class='ingredient-description'>
+         <span class='ingredient-title'>{{ item.name }}</span>
+         <span class='ingredient-price'>{{ item.cost }} грн</span>
+       </div>
+
+    </div>
   </div>
 </div>
