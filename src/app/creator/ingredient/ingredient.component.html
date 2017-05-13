@@ -1,0 +1,11 @@
+<div class='circle-item'
+    [ngStyle]="{'left': left + 'px', 'top': top + 'px', 'background-image': 'url(' + url + ')' }"
+    [@signal]="signal"
+    (click)='fade()'>
+
+  <div class='ingredient-description'>
+    <span class='ingredient-title'></span>
+    <span class='ingredient-price'></span>
+  </div>
+
+</div>

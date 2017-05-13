@@ -7,15 +7,7 @@
       </span>
     </div>
 
-    <div class='circle-item'
-      *ngFor='let item of ingredients'
-       [ngStyle]="{'left': item.left + 'px', 'top': item.top + 'px', 'background-image': 'url(' + item.url + ')' }">
+    <app-ingredient *ngFor='let item of ingredients' [left]='item.left' [top]='item.top' [url]='item.url'></app-ingredient>
 
-       <div class='ingredient-description'>
-         <span class='ingredient-title'>{{ item.name }}</span>
-         <span class='ingredient-price'>{{ item.cost }} грн</span>
-       </div>
-
-    </div>
   </div>
 </div>

@@ -157,14 +157,6 @@ let ingredients = [
   }
 ];
 
-class Ingredients {
-  name: string;
-  cost: number;
-  url: string;
-  constructor(public left: number = 0,
-              public top:  number = 0) {}
-};
-
 @Component({
   selector: 'app-creator',
   templateUrl: './creator.component.html',
@@ -185,4 +177,6 @@ export class CreatorComponent extends OnInit{
       this.ingredients[i].top = Math.round(wrap + radius * Math.cos(2 / this.sum * i * Math.PI));
     }
   }
+
+
 }
