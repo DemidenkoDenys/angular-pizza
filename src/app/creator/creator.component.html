@@ -3,19 +3,27 @@
 
     <div class='base'>
       <span class='total-price'>
-        120 грн
+        {{ orderSum }} грн
       </span>
     </div>
 
     <div class='circle-item'
-      *ngFor='let item of ingredients'
-       [ngStyle]="{'left': item.left + 'px', 'top': item.top + 'px', 'background-image': 'url(' + item.url + ')' }">
+        *ngFor='let item of ingredients'
+        [ngStyle]="{'left': item.left + 'px', 'top': item.top + 'px', 'background-image': 'url(' + item.url + ')' }"
+        [class.added]='!(item.added === 0)'
+        (click)='addIngredient($event, item)'
+        (dblclick)='$event.preventDefault()'
+        (contextmenu)='deleteIngredient($event, item)'
+        >
 
-       <div class='ingredient-description'>
-         <span class='ingredient-title'>{{ item.name }}</span>
-         <span class='ingredient-price'>{{ item.cost }} грн</span>
-       </div>
+        <div class='ingredient-description'>
+          <span class='ingredient-title'>{{ item.name }}</span>
+          <span class='ingredient-priced'>{{ item.cost }} грн</span>
+        </div>
 
+        <p class='count'
+          (click)='fullDeleteIngredient($event, item)'
+          attr.data-count='{{ item.added }}'></p>
     </div>
   </div>
 </div>

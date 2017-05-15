@@ -10,72 +10,6 @@
   margin: 0 auto;
 }
 
-.circle .circle-item{
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  text-align: center;
-  cursor: pointer;
-}
-
-.circle .circle-item.added:after{
-  content: '+';
-  position: absolute;
-  display: block;
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 10px;
-  top: 0;
-  right: -10px;
-  color: white;
-  text-align: center;
-  line-height: 20px;
-  z-index: 11;
-}
-
-.circle .circle-item:after{
-  display: none;
-}
-
-.circle .circle-item.added:hover:after{
-  content: '-';
-  line-height: 18px;
-}
-
-.circle .circle-item:hover{
-  margin-left: -20px;
-  margin-top: -20px;
-  width: 100px;
-  height: 100px;
-}
-
-.circle .circle-item:hover .ingredient-description{
-  display: block;
-}
-
-.ingredient-description{
-  position: absolute;
-  display: none;
-  bottom: -25px;
-  background: rgba(0, 255, 255, .5);
-  z-index: 11;
-  padding: 5px;
-  border-radius: 10px;
-}
-
-.ingredient-description > span{
-  display: inline-block;
-  width: auto;
-  font-family: Arial;
-  font-weight: bold;
-  color: darkblue;
-  font-size: 1.2em;
-}
-
 .base{
   display: block;
   position: absolute;
@@ -103,4 +37,80 @@
   font-weight: bold;
   color: darkblue;
   font-size: 2em;
+}
+
+.circle .circle-item{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.circle .circle-item .count:after{
+  content: attr(data-count);
+  position: absolute;
+  display: none;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 10px;
+  top: 0;
+  right: -10px;
+  color: white;
+  margin: 0;
+  line-height: 20px;
+  text-align: center;
+  z-index: 11;
+  font-family: Arial;
+  font-size: 14px;
+  letter-spacing: .2px;
+  font-weight: 900;
+}
+
+.circle .circle-item.added .count:after{
+  display: block;
+}
+
+.circle .circle-item.added:hover .count:after{
+  right: 0px;
+  top: 10px;
+}
+
+.circle .circle-item.added .count:hover:after{
+  font-family: Material Icons;
+  content: '\e92b';
+}
+
+.circle .circle-item:hover{
+  margin-left: -20px;
+  margin-top: -20px;
+  width: 100px;
+  height: 100px;
+}
+
+.circle .circle-item:hover .ingredient-description{
+   display: block;
+}
+
+.ingredient-description{
+  position: absolute;
+  display: none;
+  bottom: -25px;
+  background: rgba(0, 255, 255, .5);
+  z-index: 11;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.ingredient-description > span{
+  display: inline-block;
+  width: auto;
+  font-family: Arial;
+  font-weight: bold;
+  color: darkblue;
+  font-size: 1.2em;
 }
