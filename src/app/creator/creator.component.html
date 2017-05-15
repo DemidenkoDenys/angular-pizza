@@ -11,6 +11,7 @@
         *ngFor='let item of ingredients'
         [ngStyle]="{'left': item.left + 'px', 'top': item.top + 'px', 'background-image': 'url(' + item.url + ')' }"
         [class.added]='!(item.added === 0)'
+        [class.addedAnimation]='!(item.added === 0)'
         (click)='addIngredient($event, item)'
         (dblclick)='$event.preventDefault()'
         (contextmenu)='deleteIngredient($event, item)'

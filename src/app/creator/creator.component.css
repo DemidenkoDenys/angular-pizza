@@ -1,3 +1,10 @@
+@keyframes addingIngredient{
+  from{ opacity: 1; }
+  50%{ opacity: 0; }
+  99%{ opacity: 0; }
+  from{ opacity: 1; }
+}
+
 #creator{
   height: 650px;
 }
@@ -48,6 +55,8 @@
   background-position: center center;
   text-align: center;
   cursor: pointer;
+  transition: 1s;
+  opacity: 1;
 }
 
 .circle .circle-item .count:after{
@@ -69,6 +78,10 @@
   font-size: 14px;
   letter-spacing: .2px;
   font-weight: 900;
+}
+
+.circle .circle-item.addedAnimation{
+  animation: addingIngredient 2s ease-in-out;
 }
 
 .circle .circle-item.added .count:after{

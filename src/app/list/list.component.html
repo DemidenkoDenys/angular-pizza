@@ -1,26 +1,33 @@
 <section id='list'>
   <div *ngFor='let item of pizzas' class='list-item'>
-    <img src="{{ item }}" alt="">
+    <img src="{{ item.url }}" alt="">
     <div class='full-list-item'>
-      <img src="{{ item }}" alt="">
+      <img src="{{ item.url }}" alt="">
       <hr noshape />
-      <div class="title">Милликано</div>
-      <div class="des">блаблаблаблба</div>
+      <p class="title">{{ item.name }}</p>
+      <p class="des">{{ item.description }}</p>
       <div class="count-wrapper">
-        <form action="" class="form-count">
-          <button>-</button>
-          <input type="number">
-          <button>+</button>
-        </form>
-        <button class="size1">28</button>
-        <button class="size2">32</button>
-      </div>
-      <div class="weight">200 гр</div>
-      <div class="price">
-        140 грн
-        <button class="order-button">Заказать</button>
-      </div>
 
+        <form action="" class="form-count">
+          <div class='size-pizza' *ngFor='let sizeItem of sizes, let l = index'>
+            <input
+              type="radio"
+              id={{sizeItem.size+item.name}}
+              class='check-size'
+              [checked]='l==0'
+              name='item.name'/>
+            <label
+              for={{sizeItem.size+item.name}}
+              class='size-label'>
+              {{ sizeItem.size }}см
+            </label>
+          </div>
+        </form>
+
+      </div>
+      <p class="weight">200г /</p>
+      <p class="price">{{ item.price }}грн</p>
+      <button class="order-button">Заказать</button>
     </div>
   </div>
 </section>
