@@ -1,7 +1,7 @@
 #list{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-flow: wrap;
   width: 70%;
   margin: 0 auto;
