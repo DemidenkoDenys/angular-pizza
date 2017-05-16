@@ -18,7 +18,7 @@
 }
 
 .check-size:checked + .size-label{
-  color: red;
+  color: rgb(163, 40, 58);
 }
 
 .form-count .size-label:first-child{
