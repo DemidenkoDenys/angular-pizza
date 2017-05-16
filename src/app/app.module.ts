@@ -11,6 +11,7 @@ import { CreatorComponent } from './creator/creator.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { OrderComponent } from './order/order.component';
+import { ItemlistComponent } from './list/itemlist/itemlist.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { OrderComponent } from './order/order.component';
     CreatorComponent,
     FooterComponent,
     MenuComponent,
-    OrderComponent
+    OrderComponent,
+    ItemlistComponent
   ],
   imports: [
     BrowserModule,
