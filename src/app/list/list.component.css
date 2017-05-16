@@ -33,7 +33,6 @@
   z-index: 10;
   box-shadow: 2px 2px 4px 1px lightgrey;
   background-color: white;
-  cursor: pointer;
 }
 
 .full-list-item img{
@@ -49,64 +48,37 @@
   display: inline-block;
 }
 
-.form-count > input{
-  width: 20px;
+.title{
+  font-size: 1.2em;
+  margin: 0;
 }
 
-.form-count .check-size{
-  display: none;
-}
-
-.form-count .size-pizza{
-  padding: 5px;
-  display: inline-block;
-  background-color: lightblue;
-  border-radius: 10px;
-  margin: 5px 0 5px 5px;
-  cursor: pointer;
-  font-family: Arial;
-  font-size: 14px;
-}
-
-.size-label{
-  cursor: pointer;
-}
-
-.check-size:checked + .size-label{
-  color: red;
-}
-
-.form-count .size-label:first-child{
-  margin-left: 0;
-}
-
-.form-count .size-label:hover,
-.order-button:hover{
-  opacity: .5;
-}
-
-.order-button{
-  position: absolute;
-  padding: 5px;
-  background-color: lightblue;
-  border-radius: 10px;
-  margin: 5px 0 5px 5px;
-  cursor: pointer;
-  font-family: Arial;
-  font-size: 14px;
-  border: none;
-  right: 10px;
-  bottom: 20px;
-}
-
-.weight, .price, .title{
+.weight-price, .title{
   font-size: 18px;
   font-weight: bold;
   color: blue;
   font-family: Arial;
+  width: 100%;
+  text-align: center;
 }
 
-.title{
-  font-size: 1.2em;
-  margin: 0;
+.weight-price span{
+  color: lightgrey
+}
+
+.order-button{
+  display: block;
+  padding: 10px 5px;
+  width: 80%;
+  margin: 0 auto 10px auto;
+  background-color: lightblue;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: Arial;
+  font-size: 14px;
+  border: none;
+}
+
+.order-button:hover{
+  opacity: .5;
 }

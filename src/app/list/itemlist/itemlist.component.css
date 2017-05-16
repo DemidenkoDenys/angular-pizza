@@ -1,0 +1,30 @@
+.size-pizza{
+  padding: 5px;
+  display: inline-block;
+  background-color: lightblue;
+  border-radius: 10px;
+  margin: 5px 0 5px 2px;
+  cursor: pointer;
+  font-family: Arial;
+  font-size: 14px;
+}
+
+.check-size{
+  display: none;
+}
+
+.size-label{
+  cursor: pointer;
+}
+
+.check-size:checked + .size-label{
+  color: red;
+}
+
+.form-count .size-label:first-child{
+  margin-left: 0;
+}
+
+.size-label:hover{
+  opacity: .5;
+}

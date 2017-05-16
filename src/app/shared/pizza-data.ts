@@ -1,75 +1,99 @@
 export interface PizzaInterface {
+  readonly id: number;
   readonly name: string;
   readonly description: string;
   readonly url: string;
-  readonly price: number;
+  readonly initPrice: number;
+  readonly initWeight: number;
 }
 
 export const pizzas: PizzaInterface[] = [
   {
+    id: 0,
     name: 'Неаполитано',
     description: 'Неаполитанская пицца – одна из самых популярных во всем мире. Понравится абсолютно всем ценителям итальянской кухни.',
     url: '../img/pizza/1.png',
-    price: 100
+    initPrice: 100,
+    initWeight: 200
   },
   {
+    id: 1,
     name: 'Вегетариано',
     description: 'Пицца для вегетарианцев. Отсутствие мяса и обилие полезных для организма продуктов делают пиццу "Вегетариано" одной из самых востребованных',
     url: '../img/pizza/2.png',
-    price: 80
-  },
+    initPrice: 80,
+    initWeight: 200
+},
   {
+    id: 2,
     name: 'Итальяни',
     description: 'Приготовленная по изысканных итальянских рецептам с добавлением пармезана, арборио и приправ.',
     url: '../img/pizza/3.png',
-    price: 120
+    initPrice: 120,
+    initWeight: 200
   },
   {
+    id: 3,
     name: 'Куриная',
     description: '',
     url: '../img/pizza/4.png',
-    price: 110
+    initPrice: 110,
+    initWeight: 200
   },
   {
+    id: 4,
     name: 'Фирменная',
     description: '',
     url: '../img/pizza/5.png',
-    price: 210
+    initPrice: 210,
+    initWeight: 200
   },
   {
+    id: 5,
     name: 'Маринара',
     description: '',
     url: '../img/pizza/6.png',
-    price: 150
+    initPrice: 150,
+    initWeight: 200
   },
   {
+    id: 6,
     name: 'Грибная',
     description: '',
     url: '../img/pizza/7.png',
-    price: 90
+    initPrice: 90,
+    initWeight: 200
   },
   {
+    id: 7,
     name: 'Frutti di Mare',
     description: '',
     url: '../img/pizza/8.png',
-    price: 220
+    initPrice: 220,
+    initWeight: 200
   },
   {
+    id: 8,
     name: 'Маргарина',
     description: '',
     url: '../img/pizza/9.png',
-    price: 70
+    initPrice: 70,
+    initWeight: 200
   },
   {
+    id: 9,
     name: 'Милликано',
     description: '',
     url: '../img/pizza/10.png',
-    price: 180
+    initPrice: 180,
+    initWeight: 200
   },
   {
+    id: 10,
     name: 'Капричоза',
     description: '',
     url: '../img/pizza/11.png',
-    price: 190
+    initPrice: 190,
+    initWeight: 200
   }
 ]

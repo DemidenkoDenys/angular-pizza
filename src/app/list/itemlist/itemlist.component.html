@@ -1,3 +1,15 @@
-<p>
-  itemlist works!
-</p>
+<div class='size-pizza'>
+  <input
+    type="radio"
+    class='check-size'
+    id={{uniqueIdSize}}
+    name={{idPizza}}
+    [checked]='indexFromList==0'
+  />
+  <label
+    for={{uniqueIdSize}}
+    class='size-label'
+    (click)='checkSize()'>
+      {{ sizeItem.size }}см
+  </label>
+</div>
