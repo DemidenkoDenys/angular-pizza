@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { OrderService } from '../../services/order.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-menu',
@@ -8,10 +10,17 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   menus: string[] = [];
+  countOrderedItem: number;
   @Output() showBasket = new EventEmitter();
 
-  constructor() {
+  subscription: Subscription;
+
+  constructor(private _orderService: OrderService) {
     this.menus = ['Main', 'Pizza', 'Create', 'Order'];
+    this.countOrderedItem = this._orderService.getOrderCount();
+
+    this.subscription = _orderService.count$.subscribe(
+      counter => { this.countOrderedItem = counter; });
   }
 
   ngOnInit(){}

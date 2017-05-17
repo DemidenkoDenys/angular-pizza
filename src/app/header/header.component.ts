@@ -18,7 +18,7 @@ export class HeaderComponent{
 
   onShowBasket(){
     if(!this.basketShow)
-      this.childComponent.unpdateBasket();
+      this.childComponent.updateBasket();
     this.basketShow = !this.basketShow;
   }
 

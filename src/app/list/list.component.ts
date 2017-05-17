@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDataService, PizzaInterface } from '../services/get-data.service';
 
-
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',

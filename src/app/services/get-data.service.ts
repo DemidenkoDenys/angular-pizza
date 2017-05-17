@@ -24,4 +24,10 @@ export class GetDataService {
     return Promise.resolve(this.sizes);
   }
 
+  getOnePizza(id: number){
+    for(let i = 0, l = this.pizzas.length; i < l; i++)
+      if(this.pizzas[i].id === id)
+        return this.pizzas[i];
+  }
+
 }

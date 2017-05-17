@@ -38,6 +38,7 @@ export class ItemlistComponent implements OnInit {
 
   onMakeOrder(item){
     this._orderService.makeOrder(item, this._orderedSize);
+    this._orderService.updateOrderCounter();
   }
 
 }

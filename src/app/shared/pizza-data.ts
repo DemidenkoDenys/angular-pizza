@@ -1,6 +1,6 @@
 export const pizzas = [
   {
-    id: 0,
+    id: 1,
     name: 'Неаполитано',
     description: 'Неаполитанская пицца – одна из самых популярных во всем мире. Понравится абсолютно всем ценителям итальянской кухни.',
     url: '../img/pizza/1.png',
@@ -8,7 +8,7 @@ export const pizzas = [
     initWeight: 200
   },
   {
-    id: 1,
+    id: 2,
     name: 'Вегетариано',
     description: 'Пицца для вегетарианцев. Отсутствие мяса и обилие полезных для организма продуктов делают пиццу "Вегетариано" одной из самых востребованных',
     url: '../img/pizza/2.png',
@@ -16,7 +16,7 @@ export const pizzas = [
     initWeight: 200
 },
   {
-    id: 2,
+    id: 3,
     name: 'Итальяни',
     description: 'Приготовленная по изысканных итальянских рецептам с добавлением пармезана, арборио и приправ.',
     url: '../img/pizza/3.png',
@@ -24,7 +24,7 @@ export const pizzas = [
     initWeight: 200
   },
   {
-    id: 3,
+    id: 4,
     name: 'Куриная',
     description: '',
     url: '../img/pizza/4.png',
@@ -32,7 +32,7 @@ export const pizzas = [
     initWeight: 200
   },
   {
-    id: 4,
+    id: 5,
     name: 'Фирменная',
     description: '',
     url: '../img/pizza/5.png',
@@ -40,7 +40,7 @@ export const pizzas = [
     initWeight: 200
   },
   {
-    id: 5,
+    id: 6,
     name: 'Маринара',
     description: '',
     url: '../img/pizza/6.png',
@@ -48,7 +48,7 @@ export const pizzas = [
     initWeight: 200
   },
   {
-    id: 6,
+    id: 7,
     name: 'Грибная',
     description: '',
     url: '../img/pizza/7.png',
@@ -56,7 +56,7 @@ export const pizzas = [
     initWeight: 200
   },
   {
-    id: 7,
+    id: 8,
     name: 'Frutti di Mare',
     description: '',
     url: '../img/pizza/8.png',
@@ -64,7 +64,7 @@ export const pizzas = [
     initWeight: 200
   },
   {
-    id: 8,
+    id: 9,
     name: 'Маргарина',
     description: '',
     url: '../img/pizza/9.png',
@@ -72,7 +72,7 @@ export const pizzas = [
     initWeight: 200
   },
   {
-    id: 9,
+    id: 10,
     name: 'Милликано',
     description: '',
     url: '../img/pizza/10.png',
@@ -80,7 +80,7 @@ export const pizzas = [
     initWeight: 200
   },
   {
-    id: 10,
+    id: 11,
     name: 'Капричоза',
     description: '',
     url: '../img/pizza/11.png',

@@ -2,9 +2,9 @@
   <div class='circle'>
 
     <div class='base'>
-      <span class='total-price'>
-        {{ orderSum }} грн
-      </span>
+      <button class='total-price' (click)='onMakeOrder(item)'>
+        Заказать за {{ orderSum }} грн
+      </button>
     </div>
 
     <div class='circle-item'
