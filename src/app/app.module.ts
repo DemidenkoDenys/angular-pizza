@@ -5,13 +5,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { BasketComponent } from './header/menu/basket/basket.component';
+import { BasketComponent } from './header/basket/basket.component';
 import { ListComponent } from './list/list.component';
 import { CreatorComponent } from './creator/creator.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { OrderComponent } from './order/order.component';
 import { ItemlistComponent } from './list/itemlist/itemlist.component';
+import { OrderService } from './services/order.service';
+import { GetDataService } from './services/get-data.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { ItemlistComponent } from './list/itemlist/itemlist.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [OrderService, GetDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

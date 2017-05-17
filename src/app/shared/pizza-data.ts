@@ -1,13 +1,4 @@
-export interface PizzaInterface {
-  readonly id: number;
-  readonly name: string;
-  readonly description: string;
-  readonly url: string;
-  readonly initPrice: number;
-  readonly initWeight: number;
-}
-
-export const pizzas: PizzaInterface[] = [
+export const pizzas = [
   {
     id: 0,
     name: 'Неаполитано',

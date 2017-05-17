@@ -9,7 +9,7 @@ export class ItemlistComponent implements OnInit {
   @Input() sizeItem;
   @Input() idPizza: number;
   @Input() indexFromList: number;
-  uniqueIdSize: string;
+           uniqueIdSize: string;
 
   @Output() sizeChecked = new EventEmitter();
 
@@ -20,7 +20,8 @@ export class ItemlistComponent implements OnInit {
   checkSize(){
     this.sizeChecked.emit({ wratio: this.sizeItem.weightRatio,
                             pratio: this.sizeItem.priceRatio,
-                            idPizza: this.idPizza });
+                            size:   this.sizeItem.size,
+                            idPizza:this.idPizza });
   }
 
 }

@@ -20,11 +20,12 @@
 }
 
 .menu-item:hover{
-  opacity: 0.5;
+  background: #80cce5;
 }
 
 .basket-item{
   position: relative;
+  padding: 0 10px;
 }
 
 .basket-item .basket-icon{
@@ -39,8 +40,8 @@
 .basket-item .basket-amount.ordered{
   position: absolute;
   display: block;
-  top: 4px;
-  right: 14px;
+  top: 2px;
+  right: 0px;
   color: white;
   background-color: red;
   border-radius: 9px;
