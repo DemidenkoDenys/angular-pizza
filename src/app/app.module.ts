@@ -14,6 +14,7 @@ import { OrderComponent } from './order/order.component';
 import { ItemlistComponent } from './list/itemlist/itemlist.component';
 import { OrderService } from './services/order.service';
 import { GetDataService } from './services/get-data.service';
+import { ItemsizeComponent } from './list/itemlist/itemsize/itemsize.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { GetDataService } from './services/get-data.service';
     FooterComponent,
     MenuComponent,
     OrderComponent,
-    ItemlistComponent
+    ItemlistComponent,
+    ItemsizeComponent
   ],
   imports: [
     BrowserModule,

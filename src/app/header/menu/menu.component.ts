@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -8,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   menus: string[] = [];
+  @Output() showBasket = new EventEmitter();
 
   constructor() {
     this.menus = ['Main', 'Pizza', 'Create', 'Order'];
   }
 
-  ngOnInit() {
+  ngOnInit(){}
+
+  onShowBasket(e: Event){
+    e.preventDefault();
+    this.showBasket.emit(true);
   }
 
 }

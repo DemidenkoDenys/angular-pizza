@@ -1,15 +1,28 @@
-<div class='size-pizza'>
-  <input
-    type="radio"
-    class='check-size'
-    id={{uniqueIdSize}}
-    name={{idPizza}}
-    [checked]='indexFromList==0'
-  />
-  <label
-    for={{uniqueIdSize}}
-    class='size-label'
-    (click)='checkSize()'>
-      {{ sizeItem.size }}см
-  </label>
+<div class="list-item">
+  <img src="{{ item.url }}" alt="">
+
+  <div class='full-list-item'>
+    <img src="{{ item.url }}" alt="" />
+    <hr noshape />
+    <p class="title">{{ item.name }}</p>
+    <p class="des">{{ item.description }}</p>
+
+    <div class="count-wrapper">
+      <app-itemsize
+        *ngFor='let sizeItem of sizes, let indexSizeItem = index'
+        [indexFromList]='indexSizeItem'
+        [sizeItem]='sizeItem'
+        [idPizza]='item.id'
+        (sizeChecked)='onSizeChecked($event)'
+      >
+    </app-itemsize>
+    </div>
+
+    <p class="weight-price">
+      <span>{{ _currentWeight }} г /</span>
+      {{ _currentPrice }} <span>грн</span>
+    </p>
+
+    <button class="order-button" (click)='onMakeOrder(item)'>Заказать</button>
+  </div>
 </div>

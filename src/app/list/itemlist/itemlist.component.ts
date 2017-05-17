@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { GetDataService } from '../../services/get-data.service';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-itemlist',
@@ -6,22 +8,36 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./itemlist.component.css']
 })
 export class ItemlistComponent implements OnInit {
-  @Input() sizeItem;
-  @Input() idPizza: number;
-  @Input() indexFromList: number;
-           uniqueIdSize: string;
 
-  @Output() sizeChecked = new EventEmitter();
+  sizes = [];
+
+  private _currentPrice;
+  private _currentWeight;
+  _orderedSize: number;
+
+  @Input() item;
+
+  constructor(private _getSizesData: GetDataService,
+              private _orderService: OrderService){}
 
   ngOnInit(){
-    this.uniqueIdSize = this.idPizza + '_' + this.sizeItem.size;
+    this._currentPrice = this.item.initPrice;
+    this._currentWeight = this.item.initWeight;
+
+    this._getSizesData.getSizesInformation()
+                      .then(sizes => { this.sizes = sizes;
+                                       this._orderedSize = this.sizes[0].size;
+                                     });
   }
 
-  checkSize(){
-    this.sizeChecked.emit({ wratio: this.sizeItem.weightRatio,
-                            pratio: this.sizeItem.priceRatio,
-                            size:   this.sizeItem.size,
-                            idPizza:this.idPizza });
+  onSizeChecked(event){
+     this._currentPrice = Math.round(this.item.initPrice * event.pratio);
+     this._currentWeight = Math.round(this.item.initWeight * event.wratio);
+     this._orderedSize = event.size;
+  }
+
+  onMakeOrder(item){
+    this._orderService.makeOrder(item, this._orderedSize);
   }
 
 }

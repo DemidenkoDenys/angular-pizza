@@ -1,6 +1,6 @@
 <nav id='menu'>
   <a href='#' class='menu-item' *ngFor='let menuitem of menus'>{{ menuitem }}</a>
-  <a href='#' class='menu-item basket-item'>
+  <a href='#' class='menu-item basket-item' (click)='onShowBasket($event)'>
     <i class="material-icons basket-icon">shopping_basket</i>
     <span class='basket-amount ordered'>2</span>
   </a>

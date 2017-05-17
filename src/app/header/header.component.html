@@ -1,8 +1,12 @@
 <header id='header'>
+
   <div class='up-header'>
     <a class='logo' href='#'><img class='logo-image' src='../img/logo.png'>{{ title }}</a>
   </div>
+
   <div class='down-header'>
-    <app-menu></app-menu>
+    <app-menu (showBasket)='onShowBasket($event)'></app-menu>
+    <app-basket [hidden]='!basketShow' (hideBasket)='onHideBasket()'></app-basket>
   </div>
+
 </header>

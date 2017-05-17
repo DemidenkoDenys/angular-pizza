@@ -1,30 +1,75 @@
-.size-pizza{
-  padding: 5px;
+.list-item{
+  position: relative;
+  height: 200px;
+  width: 200px;
+  display: block;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.list-item img{
+  width: 100%;
+  height: 100%;
+}
+
+.full-list-item{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  display: none;
+  padding: 10px;
+  z-index: 10;
+  box-shadow: 2px 2px 4px 1px lightgrey;
+  background-color: white;
+}
+
+.full-list-item img{
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.list-item:hover .full-list-item{
+  display: block;
+}
+
+.full-list-item p{
   display: inline-block;
+}
+
+.title{
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.weight-price, .title{
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(163, 40, 58);
+  font-family: Arial;
+  width: 100%;
+  text-align: center;
+}
+
+.weight-price span{
+  color: lightgrey
+}
+
+.order-button{
+  display: block;
+  padding: 10px 5px;
+  width: 80%;
+  margin: 0 auto 10px auto;
   background-color: lightblue;
-  border-radius: 10px;
-  margin: 5px 0 5px 2px;
+  border-radius: 15px;
   cursor: pointer;
   font-family: Arial;
   font-size: 14px;
+  border: none;
 }
 
-.check-size{
-  display: none;
-}
-
-.size-label{
-  cursor: pointer;
-}
-
-.check-size:checked + .size-label{
-  color: rgb(163, 40, 58);
-}
-
-.form-count .size-label:first-child{
-  margin-left: 0;
-}
-
-.size-label:hover{
+.order-button:hover{
   opacity: .5;
 }
