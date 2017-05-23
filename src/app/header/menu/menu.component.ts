@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
     this.menus = ['Main', 'Pizza', 'Create', 'Order'];
     this.countOrderedItem = this._orderService.getOrderCount();
 
-    this.subscription = _orderService.count$.subscribe(
+    this.subscription = _orderService.updateCount$.subscribe(
       counter => { this.countOrderedItem = counter; });
   }
 

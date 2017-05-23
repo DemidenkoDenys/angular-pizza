@@ -2,8 +2,11 @@
   <div class='circle'>
 
     <div class='base'>
-      <button class='total-price' (click)='onMakeOrder(item)'>
-        Заказать за {{ orderSum }} грн
+
+      <app-itemsize (sizeCheckedEvent)='onSizeChecked($event)'></app-itemsize>
+
+      <button class='total-price' (click)='onMakeOrder()'>
+        Заказать за {{ createdPizza.initPrice }} грн ({{ createdPizza.initWeight }} грамм)
       </button>
     </div>
 
@@ -13,9 +16,7 @@
         [class.added]='!(item.added === 0)'
         [class.addedAnimation]='!(item.added === 0)'
         (click)='addIngredient($event, item)'
-        (dblclick)='$event.preventDefault()'
-        (contextmenu)='deleteIngredient($event, item)'
-        >
+        (contextmenu)='deleteIngredient($event, item)'>
 
         <div class='ingredient-description'>
           <span class='ingredient-title'>{{ item.name }}</span>
@@ -23,8 +24,9 @@
         </div>
 
         <p class='count'
-          (click)='fullDeleteIngredient($event, item)'
-          attr.data-count='{{ item.added }}'></p>
+          (click)='clearIngredient($event, item)'
+          attr.data-count='{{ item.added }}'>
+        </p>
     </div>
 
   </div>

@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { BasketComponent } from './header/basket/basket.component';
+import { BasketComponent } from './basket/basket.component';
 import { ListComponent } from './list/list.component';
 import { CreatorComponent } from './creator/creator.component';
 import { FooterComponent } from './footer/footer.component';
@@ -15,6 +15,7 @@ import { ItemlistComponent } from './list/itemlist/itemlist.component';
 import { OrderService } from './services/order.service';
 import { GetDataService } from './services/get-data.service';
 import { ItemsizeComponent } from './list/itemlist/itemsize/itemsize.component';
+import { BasketitemComponent } from './basket/basketitem/basketitem.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ItemsizeComponent } from './list/itemlist/itemsize/itemsize.component';
     MenuComponent,
     OrderComponent,
     ItemlistComponent,
-    ItemsizeComponent
+    ItemsizeComponent,
+    BasketitemComponent
   ],
   imports: [
     BrowserModule,

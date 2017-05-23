@@ -7,38 +7,31 @@ import { OrderService } from '../../services/order.service';
   templateUrl: './itemlist.component.html',
   styleUrls: ['./itemlist.component.css']
 })
-export class ItemlistComponent implements OnInit {
-
-  sizes = [];
+export class ItemlistComponent implements OnInit{
 
   private _currentPrice;
   private _currentWeight;
-  _orderedSize: number;
+  private _currentSize;
 
   @Input() item;
 
-  constructor(private _getSizesData: GetDataService,
-              private _orderService: OrderService){}
+  constructor(private _orderService: OrderService){}
 
-  ngOnInit(){
-    this._currentPrice = this.item.initPrice;
-    this._currentWeight = this.item.initWeight;
-
-    this._getSizesData.getSizesInformation()
-                      .then(sizes => { this.sizes = sizes;
-                                       this._orderedSize = this.sizes[0].size;
-                                     });
-  }
+  ngOnInit(){}
 
   onSizeChecked(event){
-     this._currentPrice = Math.round(this.item.initPrice * event.pratio);
-     this._currentWeight = Math.round(this.item.initWeight * event.wratio);
-     this._orderedSize = event.size;
+    this._currentSize = event;
+    this._currentPrice = Math.round(this.item.initPrice * event.priceRatio);
+    this._currentWeight = Math.round(this.item.initWeight * event.weightRatio);
   }
 
   onMakeOrder(item){
-    this._orderService.makeOrder(item, this._orderedSize);
-    this._orderService.updateOrderCounter();
+    if(!item.id)
+      window.scrollTo(0, document.getElementById('creator').getBoundingClientRect().top);
+    else{
+      this._orderService.makeOrder(this.item, this._currentSize);
+      this._orderService.updateOrderCounter();
+    }
   }
 
 }

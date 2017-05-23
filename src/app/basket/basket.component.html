@@ -1,0 +1,15 @@
+<div id='basket' (click)='onHideBasket($event, false)'>
+  <div class='basket-wrapper'>
+    <h2 class='basket-title'>Корзина</h2>
+
+    <ul class='order-list'>
+      <app-basketitem *ngFor='let item2 of fullOrderList' [item]='item2'></app-basketitem>
+    </ul>
+
+    <div class='control-wrapper'>
+      <button class='make-order'>Оформить заказ</button>
+      <button class='discart-order' (click)='onClearBasket()'>Сбросить</button>
+      <button class='close-basket' (click)='onHideBasket($event, true)'>Закрыть</button>
+    </div>
+  </div>
+</div>

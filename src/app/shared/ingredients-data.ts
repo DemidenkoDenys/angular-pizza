@@ -1,15 +1,4 @@
-export interface IngredientInteface {
-             id: number;
-             name: string;
-             cost: number;
-    readonly url: string;
-             left: number;
-             top: number;
-             added: number;
-             limit: number;
-};
-
-export let ingredients: IngredientInteface[] = [
+export let ingredients = [
   {
     id: 0,
     name:  'помидоры',
@@ -18,6 +7,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 40,
     limit: 3
   },
   {
@@ -28,6 +18,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 50,
     limit: 3
   },
   {
@@ -38,6 +29,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 5,
     limit: 5
   },
   {
@@ -48,6 +40,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 45,
     limit: 2
   },
   {
@@ -58,6 +51,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 20,
     limit: 12
   },
   {
@@ -68,6 +62,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 15,
     limit: 15
   },
   {
@@ -78,6 +73,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 50,
     limit: 2
   },
   {
@@ -88,6 +84,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 23,
     limit: 5
   },
   {
@@ -98,6 +95,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 30,
     limit: 1
   },
   {
@@ -108,6 +106,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 20,
     limit: 3
   },
   {
@@ -118,6 +117,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 60,
     limit: 2
   },
   {
@@ -128,6 +128,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 60,
     limit: 2
   },
   {
@@ -138,6 +139,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 50,
     limit: 2
   },
   {
@@ -148,6 +150,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 10,
     limit: 10
   },
   {
@@ -158,6 +161,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 20,
     limit: 5
   },
   {
@@ -168,6 +172,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 40,
     limit: 2
   },
   {
@@ -178,6 +183,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 20,
     limit: 3
   },
   {
@@ -188,6 +194,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 10,
     limit: 15
   },
   {
@@ -198,6 +205,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 50,
     limit: 5
   },
   {
@@ -208,6 +216,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 20,
     limit: 2
   },
   {
@@ -218,6 +227,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 20,
     limit: 2
   },
   {
@@ -228,6 +238,7 @@ export let ingredients: IngredientInteface[] = [
     left: 0,
     top: 0,
     added: 0,
+    initWeight: 20,
     limit: 2
   }
 ];

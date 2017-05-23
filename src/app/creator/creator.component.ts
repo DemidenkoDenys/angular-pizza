@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ingredients, IngredientInteface } from '../shared/ingredients-data';
 import { OrderService } from '../services/order.service';
+import { GetDataService } from '../services/get-data.service';
 
 @Component({
   selector: 'app-creator',
@@ -8,34 +8,33 @@ import { OrderService } from '../services/order.service';
   styleUrls: ['./creator.component.css']
 })
 export class CreatorComponent implements OnInit{
-  ingredients: IngredientInteface[] = ingredients;
-  elementCount: number = this.ingredients.length;
-  orderSum: number = 50;
+
+  elementsCount: number;
+  initSize: number = 0;
   elementSize: number = 50;
   creatorHeight: number = 500;
 
-  constructor(private _orderService: OrderService){}
+  private selectedSize;
+  private ingredients;
+  private createdPizza;
+
+  constructor(private _orderService: OrderService,
+              private _getDataService: GetDataService){
+    this.ingredients = _getDataService.getIngredients();
+    this.createdPizza = this._getDataService.getOnePizzaInformation(0);
+    this.elementsCount = this.ingredients.length;
+    this.selectedSize = {id: 0, size: 28, priceRatio: 1, weightRatio: 1 };
+  }
 
   ngOnInit(){
     this.creatorHeight = document.getElementById('creator').clientHeight;
+
     let wrap = this.creatorHeight / 2 - this.elementSize / 2;
     let radius = this.creatorHeight / 2 - this.elementSize;
 
-    for(let i = 0; i < this.elementCount; i++){
-      this.ingredients[i].left = Math.round(wrap + radius * Math.sin(2 / this.elementCount * i * Math.PI));
-      this.ingredients[i].top = Math.round(wrap + radius * Math.cos(2 / this.elementCount * i * Math.PI));
-    }
-  }
-
-  addIngredient(event: Event, item: IngredientInteface){
-    event.preventDefault();
-      let i = item.id;
-      if(this.ingredients[i].name === item.name){
-        if(this.ingredients[i].added < this.ingredients[i].limit){
-          this.ingredients[i].added++;
-          this.checkSum();
-          this.moveIngredientField(this.ingredients[i]);
-        }
+    for(let i = 0; i < this.elementsCount; i++){
+      this.ingredients[i].left = Math.round(wrap + radius * Math.sin(2 / this.elementsCount * i * Math.PI));
+      this.ingredients[i].top = Math.round(wrap + radius * Math.cos(2 / this.elementsCount * i * Math.PI));
     }
   }
 
@@ -49,42 +48,80 @@ export class CreatorComponent implements OnInit{
     }, 1000);
   }
 
-  deleteIngredient(event: Event, item: IngredientInteface){
+
+  addIngredient(event: Event, item){
     event.preventDefault();
-    let i = item.id;
-      if(this.ingredients[i].name === item.name){
-        if(this.ingredients[i].added > 0){
-          this.ingredients[i].added--;
-          this.checkSum();
-        }
-      }
+    if(this.ingredients[item.id].added < this.ingredients[item.id].limit){
+      this.ingredients[item.id].added++;
+      this.updatePizzaInformation();
+      this.moveIngredientField(this.ingredients[item.id]);
+    }
   }
 
-  fullDeleteIngredient(event: Event, item: IngredientInteface){
+  deleteIngredient(event: Event, item){
+    event.preventDefault();
+    if(this.ingredients[item.id].added > 0){
+      this.ingredients[item.id].added--;
+      this.updatePizzaInformation();
+    }
+  }
+
+  clearIngredient(event: Event, item){
     event.stopPropagation();
-    let i = item.id;
-      if(this.ingredients[i].name === item.name){
-        this.ingredients[i].added = 0;
-        this.checkSum();
-      }
+    this.ingredients[item.id].added = 0;
+    this.updatePizzaInformation();
   }
 
-  checkSum(){
-    this.orderSum = 50;
+  onSizeChecked(event){
+    this.selectedSize = event;
+    this.updatePizzaInformation();
+  }
+
+  updatePizzaInformation(){
+    this.checkPizzaPrice();
+    this.checkPizzaWeight();
+    this.checkPizzaDescription();
+  };
+
+  checkPizzaPrice(){
+    let tempPrice = 50;
     for(let i = 0; i < this.ingredients.length; i++)
-      this.orderSum += this.ingredients[i].added * this.ingredients[i].cost;
+      if(this.ingredients[i].added > 0)
+        tempPrice += Math.round(this.ingredients[i].added * this.ingredients[i].cost);
+    this.createdPizza.initPrice = Math.round(tempPrice * this.selectedSize.priceRatio);
   }
 
-  onMakeOrder(item){
-    this._orderService.makeOrder({
-      id: 0,
-      name: 'собраная',
-      desciption: 'ингредиенты',
-      url: '../img/pizza-base.png',
-      initPrice: 50,
-      initWeight: 100
-    }, 28);
+  checkPizzaWeight(){
+    let tempWeight = 100;
+    for(let i = 0; i < this.ingredients.length; i++)
+      if(this.ingredients[i].added > 0)
+        tempWeight += Math.round(this.ingredients[i].added * this.ingredients[i].initWeight);
+    this.createdPizza.initWeight = Math.round(tempWeight * this.selectedSize.weightRatio);
+  }
+
+  checkPizzaDescription(){
+    let description = '';
+    for(let i = 0; i < this.ingredients.length; i++){
+      if(this.ingredients[i].added > 0)
+        description += this.ingredients[i].name + ' - ' + this.ingredients[i].added + ' шт, ';
+    }
+    this.createdPizza.description = description.substr(0, description.length - 2);
+  }
+
+  initCreator(){
+    for(let i = 0, l = this.ingredients.length; i < l; i++)
+      this.ingredients[i].added = 0;
+
+    this.createdPizza = this._getDataService.getOnePizzaInformation(0);
+    this.createdPizza.description = '';
+    this.updatePizzaInformation();
+  }
+
+  onMakeOrder(){
+    // console.log(this.createdPizza);
+    this._orderService.makeOrder(this.createdPizza, this.selectedSize);
     this._orderService.updateOrderCounter();
+    this.initCreator();
   }
 
 }

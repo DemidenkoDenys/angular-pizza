@@ -7,15 +7,8 @@
     <p class="title">{{ item.name }}</p>
     <p class="des">{{ item.description }}</p>
 
-    <div class="count-wrapper">
-      <app-itemsize
-        *ngFor='let sizeItem of sizes, let indexSizeItem = index'
-        [indexFromList]='indexSizeItem'
-        [sizeItem]='sizeItem'
-        [idPizza]='item.id'
-        (sizeChecked)='onSizeChecked($event)'
-      >
-    </app-itemsize>
+    <div class="count-wrapper" [hidden]='item.id===0'>
+      <app-itemsize (sizeCheckedEvent)='onSizeChecked($event)'></app-itemsize>
     </div>
 
     <p class="weight-price">
@@ -23,6 +16,6 @@
       {{ _currentPrice }} <span>грн</span>
     </p>
 
-    <button class="order-button" (click)='onMakeOrder(item)'>Заказать</button>
+    <button class="order-button" (click)='onMakeOrder(item)' [innerText]='item.id===0 ? "Собрать" : "Заказать"'></button>
   </div>
 </div>

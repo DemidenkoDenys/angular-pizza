@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { GetDataService } from '../../../services/get-data.service';
 
 @Component({
   selector: 'app-itemsize',
@@ -8,23 +8,22 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ItemsizeComponent implements OnInit {
 
-  @Input() sizeItem;
-  @Input() idPizza: number;
-  @Input() indexFromList: number;
-           uniqueIdSize: string;
+  sizes = [];
+  uniqueIdSize: number;
+  selectedSize: number = 0;
 
-  @Output() sizeChecked = new EventEmitter();
+  @Output() sizeCheckedEvent = new EventEmitter();
 
-  constructor(){}
+  constructor(private _getDataService: GetDataService){}
 
   ngOnInit(){
-    this.uniqueIdSize = this.idPizza + '_' + this.sizeItem.size;
+    this.uniqueIdSize = this._getDataService.getUniqueId();
+    this.sizes = this._getDataService.getSizesInformation();
+    this.checkSize(0);
   }
 
-  checkSize(){
-    this.sizeChecked.emit({ wratio: this.sizeItem.weightRatio,
-                            pratio: this.sizeItem.priceRatio,
-                            size:   this.sizeItem.size,
-                            idPizza:this.idPizza });
+  checkSize(index){
+    this.selectedSize = index;
+    this.sizeCheckedEvent.emit(this.sizes[this.selectedSize]);
   }
 }

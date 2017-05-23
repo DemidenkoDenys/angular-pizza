@@ -1,48 +1,73 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { Subject }    from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 
 interface OrderInterface {
   id: number;
-  size: number;
+  sizeId: number;
   date: number;
+  price: number;
+  weight: number;
+  description: string;
 }
 
 @Injectable()
 export class OrderService {
 
-  order: OrderInterface[] = [];
-  orderDate: Number;
+  private order: OrderInterface[] = [];
+  private orderDate: Number;
+  private basketCountUpdater = new Subject<number>();
+  private basketUpdater = new Subject<number>();
 
-  private countSubject = new Subject<number>();
-  count$ = this.countSubject.asObservable();
+  updateCount$ = this.basketCountUpdater.asObservable();
+  updateBasket$ = this.basketUpdater.asObservable();
 
   constructor(){
-    for(let i = 0, l = sessionStorage.length; i < l; i++){
-      if(/\b\d_\d{2}|\d{13}\b/g.test(sessionStorage.key(i))){
-
-        // console.log(sessionStorage.key(i).substr(0, sessionStorage.key(i).indexOf('_')),
-        //             sessionStorage.key(i).substr(sessionStorage.key(i).indexOf('_') + 1, sessionStorage.key(i).indexOf('|') - 2),
-        //             sessionStorage.key(i).substr(sessionStorage.key(i).indexOf('|') + 1, sessionStorage.key(i).length)
-        //            );
-
-        this.order.push({
-          id: +sessionStorage.key(i).substr(0, sessionStorage.key(i).indexOf('_')),
-          size: +sessionStorage.key(i).substr(sessionStorage.key(i).indexOf('_') + 1, sessionStorage.key(i).indexOf('|') - sessionStorage.key(i).indexOf('_') - 1),
-          date: +sessionStorage.key(i).substr(sessionStorage.key(i).indexOf('|') + 1, sessionStorage.key(i).length)
-        });
+    if(sessionStorage.length > 0){
+      for(let i = 0, l = sessionStorage.length; i < l; i++){
+        if(/\d{1,3}_\d_\d{13}_\d{2,3}_\d{3,4}/g.test(sessionStorage.key(i))){
+          this.order.push({
+            id:     +sessionStorage.key(i).split('_')[0],
+            sizeId: +sessionStorage.key(i).split('_')[1],
+            date:   +sessionStorage.key(i).split('_')[2],
+            weight: +sessionStorage.key(i).split('_')[3],
+            price:  +sessionStorage.key(i).split('_')[4],
+            description: sessionStorage.getItem(sessionStorage.key(i))
+          });
+        }
       }
     }
-    console.log('массив заказов', this.order);
   }
 
-  makeOrder(item, size){
-    this.order.push({
-      id: item.id,
-      size: size,
-      date: Date.now()
-    });
-    sessionStorage.setItem(String(item.id)+'_'+String(size)+'|'+String(Date.now()), '');
-    console.log('локальное хранилище', sessionStorage);
+  makeOrder(pizzaObj, sizeObj){
+    if(pizzaObj.id === 0){
+      this.order.push({
+        id: 0,
+        sizeId: sizeObj.id,
+        date: Date.now(),
+        price: pizzaObj.initPrice,
+        weight: pizzaObj.initWeight,
+        description: pizzaObj.description
+      });
+    }
+    else
+      this.order.push({
+        id: pizzaObj.id,
+        sizeId: sizeObj.id,
+        date: Date.now(),
+        price: Math.round(pizzaObj.initPrice * sizeObj.priceRatio),
+        weight: Math.round(pizzaObj.initWeight * sizeObj.weightRatio),
+        description: ''
+      });
+
+    sessionStorage.setItem(this.order[this.order.length - 1].id + '_' +
+                           this.order[this.order.length - 1].sizeId + '_' +
+                           this.order[this.order.length - 1].date + '_' +
+                           this.order[this.order.length - 1].price + '_' +
+                           this.order[this.order.length - 1].weight,
+                           this.order[this.order.length - 1].description);
+
+    console.log(sessionStorage);
+
   }
 
   getOrderList(){
@@ -50,12 +75,39 @@ export class OrderService {
   }
 
   updateOrderCounter(){
-    this.countSubject.next(this.order.length);
+    this.basketCountUpdater.next(this.order.length);
   }
 
   getOrderCount(){
     return this.order.length;
   }
 
+  updateBasket(){
+    this.basketUpdater.next(1);
+  }
 
+  clearBasket(){
+    for(let i = 0, l = sessionStorage.length; i < l; i++)
+      if(/\d{1,3}_\d_\d{13}_\d{2,3}_\d{3,4}/g.test(sessionStorage.key(i)))
+        sessionStorage.removeItem(sessionStorage.key(i));
+    this.order = [];
+    this.updateOrderCounter();
+  }
+
+  deleteOrderItem(item){
+    for(let i = 0, l = this.order.length; i < l; i++){
+      if(this.order[i].date === item.dateMS){
+        this.order.splice(i, 1); break;
+      }
+    }
+
+    for(let k = 0; k < sessionStorage.length; k++){
+      if(sessionStorage.key(k).indexOf(item.dateMS) !== -1){
+        sessionStorage.removeItem(sessionStorage.key(k)); break;
+      }
+    }
+
+    this.updateBasket();
+    this.updateOrderCounter();
+  }
 }

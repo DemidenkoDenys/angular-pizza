@@ -1,0 +1,54 @@
+.order-item{
+  display: flex;
+  margin: 5px 20px;
+}
+
+.hidden{
+  display: none;
+}
+
+.order-item > *{
+  /*border: 1px solid black;*/
+  padding: 0 5px;
+  line-height: 30px;
+  color: grey;
+  cursor: pointer;
+}
+
+.order-item img{
+  height: 30px;
+}
+
+.order-pizza-name{
+  width: 15%;
+}
+
+.correcting-order-pizza-price input{
+  width: 50px;
+}
+
+.full-description{
+  display: none;
+  margin: 5px 20px 5px 100px;
+  color: grey;
+}
+
+.full-description.show{
+  display: block;
+}
+
+.order-item .delete-pizza-order{
+  display: none;
+  width: 25px;
+  margin-left: auto;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.order-item:hover .delete-pizza-order{
+  display: block;
+}
+
+.order-item .delete-pizza-order:hover{
+  color: red;
+}

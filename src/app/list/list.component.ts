@@ -8,7 +8,6 @@ import { GetDataService, PizzaInterface } from '../services/get-data.service';
 })
 export class ListComponent {
   pizzas = [];
-  sizes = [];
 
   constructor(private _getPizzaData: GetDataService){}
 

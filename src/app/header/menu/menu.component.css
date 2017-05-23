@@ -6,6 +6,7 @@
   align-items: stretch;
   background-color: lightblue;
   height: 100%;
+  padding: 0 15%;
 }
 
 .menu-item{
@@ -26,6 +27,7 @@
 .basket-item{
   position: relative;
   padding: 0 10px;
+  margin-left: auto;
 }
 
 .basket-item .basket-icon{

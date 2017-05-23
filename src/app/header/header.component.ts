@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { BasketComponent } from './basket/basket.component';
-
+import { Component } from '@angular/core';
+import { OrderService } from '../services/order.service';
 
 @Component({
   templateUrl: './header.component.html',
@@ -12,13 +11,13 @@ export class HeaderComponent{
   title: string = 'Dream Pizza';
   basketShow: boolean = false;
 
-  @ViewChild(BasketComponent) childComponent: BasketComponent;
-
   public logoImage = require('../img/logo.png');
+
+  constructor(private _orderService: OrderService){}
 
   onShowBasket(){
     if(!this.basketShow)
-      this.childComponent.updateBasket();
+      this._orderService.updateBasket();
     this.basketShow = !this.basketShow;
   }
 
