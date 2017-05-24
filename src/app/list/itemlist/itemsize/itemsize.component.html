@@ -1,16 +1,18 @@
-<div class='size-pizza'
-    *ngFor='let sizeItem of sizes, let indexSizeItem = index'>
-  <input
-    type="radio"
-    class='check-size'
-    id='{{uniqueIdSize}}_{{indexSizeItem}}'
-    name={{uniqueIdSize}}
-    [checked]='indexSizeItem==0'
-  />
-  <label
-    class='size-label'
-    for='{{uniqueIdSize}}_{{indexSizeItem}}'
-    (click)='checkSize(indexSizeItem)'>
-      {{ sizeItem.size }}см
-  </label>
+<div class="size-wrapper">
+  <div class='size-pizza'
+      *ngFor='let sizeItem of sizes, let indexSizeItem = index'>
+    <input
+      type="radio"
+      class='check-size'
+      id='{{uniqueIdSize}}_{{indexSizeItem}}'
+      name={{uniqueIdSize}}
+      [checked]='indexSizeItem==0'
+    />
+    <label
+      class='size-label'
+      for='{{uniqueIdSize}}_{{indexSizeItem}}'
+      (click)='checkSize(indexSizeItem)'>
+        {{ sizeItem.size }}
+    </label>
+  </div>
 </div>

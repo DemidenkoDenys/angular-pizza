@@ -1,9 +1,8 @@
 #list{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   flex-flow: wrap;
-  width: 70%;
   margin: 0 auto;
-  padding: 30px;
+  padding: 0 10%;
 }

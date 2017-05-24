@@ -1,21 +1,34 @@
-<div class="list-item">
-  <img src="{{ item.url }}" alt="">
+<div class="list-item"
+    (mouseover)='openOnOver($event)'
+    (mouseout)='openOnOut($event)'
+    [class.open]='limpid === 1'
+    [class.limpid]='limpid === 0'>
 
-  <div class='full-list-item'>
-    <img src="{{ item.url }}" alt="" />
-    <hr noshape />
-    <p class="title">{{ item.name }}</p>
-    <p class="des">{{ item.description }}</p>
+  <div class='hidden-list-item'></div>
 
-    <div class="count-wrapper" [hidden]='item.id===0'>
+  <p class="title">{{ item.name }}</p>
+
+  <div class="img-wrapper">
+    <img src="{{ item.url }}" alt="">
+  </div>
+
+  <div class="description-wrapper">
+    <p class="description">{{ item.description }}</p>
+  </div>
+
+  <div class="weight-price-wrapper">
+    <span class='price'>{{ _currentPrice }},00</span>
+    <span class='weight'>{{ _currentWeight }}гр</span>
+    <button class="order-button"
+           (click)='onMakeOrder(item)'>
+      <i class="material-icons">{{ item.id===0 ? 'keyboard_arrow_down' : 'add_circle' }}</i>
+    </button>
+  </div>
+
+  <div class="size-outer-wrapper">
+    <div class="size-move-wrapper">
       <app-itemsize (sizeCheckedEvent)='onSizeChecked($event)'></app-itemsize>
     </div>
-
-    <p class="weight-price">
-      <span>{{ _currentWeight }} г /</span>
-      {{ _currentPrice }} <span>грн</span>
-    </p>
-
-    <button class="order-button" (click)='onMakeOrder(item)' [innerText]='item.id===0 ? "Собрать" : "Заказать"'></button>
   </div>
+
 </div>

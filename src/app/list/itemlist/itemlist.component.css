@@ -1,75 +1,180 @@
 .list-item{
   position: relative;
-  height: 200px;
+  height: 500px;
   width: 200px;
-  display: block;
-  padding: 10px;
-  margin-bottom: 30px;
+  border-radius: 15px;
+  margin-top: 50px;
+  cursor: pointer;
+
+  background: #fad4a7; /* Old browsers */
+  background: -moz-linear-gradient(left,  #fad4a7 0%, #fad4a7 66%, #916450 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #fad4a7 0%,#fad4a7 66%,#916450 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #fad4a7 0%,#fad4a7 66%,#916450 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fad4a7', endColorstr='#916450',GradientType=1 ); /* IE6-9 */
 }
 
-.list-item img{
-  width: 100%;
-  height: 100%;
+.list-item .title{
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 10px 15px;
+  color: #150904;
 }
 
-.full-list-item{
+.list-item .img-wrapper{
   position: absolute;
+  left: 0;
   top: 0;
+  bottom: 0;
+  right: -100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.list-item .img-wrapper img{
+  position: absolute;
+  width: 75%;
+  left: -40%;
+  top: 50px;
+  transition: 1s;
+  z-index: 3;
+}
+
+.hidden-list-item{
+  position: absolute;
+  width: 160px;
+  height: 100%;
+  z-index: 50;
+}
+
+.list-item.limpid > *{
+  opacity: .3;
+}
+
+.list-item.open:hover .img-wrapper{
+  z-index: 4;
+}
+
+.list-item.open:hover .img-wrapper img{
+  left: -50px;
+  width: 100%;
+  z-index: 5;
+}
+
+.list-item.open:hover .description{
+  bottom: -60%;
+}
+
+.description-wrapper{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 85%;
+  overflow: hidden;
+}
+
+.description{
+  position: absolute;
+  display: block;
+  bottom: 30px;
   left: 0;
   right: 0;
   height: auto;
-  display: none;
-  padding: 10px;
-  z-index: 10;
-  box-shadow: 2px 2px 4px 1px lightgrey;
-  background-color: white;
-}
-
-.full-list-item img{
-  width: 100%;
-  height: auto;
-  position: relative;
-}
-
-.list-item:hover .full-list-item{
-  display: block;
-}
-
-.full-list-item p{
-  display: inline-block;
-}
-
-.title{
-  font-size: 1.2em;
-  margin: 0;
-}
-
-.weight-price, .title{
-  font-size: 18px;
-  font-weight: bold;
-  color: rgb(163, 40, 58);
+  color: #150904;
   font-family: Arial;
-  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 30;
+  transition: 1s;
+}
+
+.weight-price-wrapper{
+  bottom: -35px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+
+  position: absolute;
+  z-index: 40;
+  border-radius: 50%;
+  background: rgba(230, 28, 38, 0.8);
   text-align: center;
 }
 
-.weight-price span{
-  color: lightgrey
+.weight-price-wrapper > *{
+  color: white;
+  font-family: Arial;
+  font-size: 16px;
+}
+
+.weight-price-wrapper .price{
+  position: relative;
+  top: 15px;
+}
+
+.weight-price-wrapper .weight{
+  display: block;
+  position: absolute;
+  background: rgba(90, 45, 45, 1);
+  height: 30px;
+  width: 60px;
+  border-radius: 0 0 30px 30px;
+  bottom: 5px;
+  left: 5px;
+  z-index:15;
+  line-height: 25px;
+  font-size: 14px;
+}
+
+.list-item:hover .weight{
+  display: none;
 }
 
 .order-button{
   display: block;
-  padding: 10px 5px;
-  width: 80%;
-  margin: 0 auto 10px auto;
-  background-color: lightblue;
-  border-radius: 15px;
-  cursor: pointer;
-  font-family: Arial;
-  font-size: 14px;
+  position: absolute;
+  height: 30px;
+  width: 60px;
   border: none;
+  border-radius: 0 0 30px 30px;
+  bottom: 5px;
+  left: 5px;
+  z-index:14;
+  line-height: 25px;
+  font-size: 14px;
+  text-align: center;
+  background: none;
 }
 
-.order-button:hover{
-  opacity: .5;
+.order-button i{
+  width: 30px !important;
+  color: lightgreen;
+  cursor: pointer;
+  line-height: 30px;
+}
+
+.size-outer-wrapper{
+  position: absolute;
+  bottom: -35px;
+  left: 20px;
+  height: 70px;
+  width: 70px;
+  overflow: hidden;
+}
+
+.size-move-wrapper{
+  position: relative;
+  bottom: -200px;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
+
+.list-item.open:hover .size-move-wrapper{
+  bottom: -70px;
 }

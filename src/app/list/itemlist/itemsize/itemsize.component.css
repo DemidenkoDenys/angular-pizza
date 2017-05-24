@@ -1,32 +1,75 @@
-
-
-.size-pizza{
-  padding: 5px;
-  display: inline-block;
-  background-color: lightblue;
-  border-radius: 10px;
-  margin: 5px 0 5px 2px;
-  cursor: pointer;
-  font-family: Arial;
-  font-size: 14px;
+.size-wrapper{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(230, 28, 38, 0.8);
+  z-index: 50;
 }
 
-.check-size{
+.size-pizza{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: Arial;
+  text-align: center;
+  overflow: hidden;
+}
+
+.size-pizza:nth-child(1){
+  border-radius: 30px 0 0 0;
+  left: 5px;
+  top: 5px;
+  line-height: 35px;
+}
+
+.size-pizza:nth-child(2){
+  border-radius: 0 30px 0 0;
+  top: 5px;
+  right: 5px;
+  line-height: 35px;
+}
+
+.size-pizza:nth-child(3){
+  border-radius: 0 0 30px 0;
+  right: 5px;
+  bottom: 5px;
+  line-height: 25px;
+}
+
+.size-pizza:nth-child(4){
+  border-radius: 0 0 0 30px;
+  left: 5px;
+  bottom: 5px;
+  line-height: 25px;
+}
+
+.size-pizza:nth-child(1) .size-label{ text-indent: 5px; }
+.size-pizza:nth-child(2) .size-label{ text-indent: -5px; }
+.size-pizza:nth-child(3) .size-label{ text-indent: -5px; }
+.size-pizza:nth-child(4) .size-label{ text-indent: 5px; }
+
+
+.size-pizza .check-size{
   display: none;
 }
 
-.size-label{
+.size-pizza .size-label{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 }
 
+.check-size:not(:checked) + .size-label:hover{
+  color: rgba(90, 45, 45, 1);
+}
+
 .check-size:checked + .size-label{
-  color: rgb(163, 40, 58);
-}
-
-.form-count .size-label:first-child{
-  margin-left: 0;
-}
-
-.size-label:hover{
-  opacity: .5;
+  background: rgba(90, 45, 45, 1);
 }

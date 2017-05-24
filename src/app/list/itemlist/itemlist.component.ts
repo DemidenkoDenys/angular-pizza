@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GetDataService } from '../../services/get-data.service';
 import { OrderService } from '../../services/order.service';
 
@@ -12,12 +12,21 @@ export class ItemlistComponent implements OnInit{
   private _currentPrice;
   private _currentWeight;
   private _currentSize;
+  private _open: boolean = false;
+
+  @Output() hoveredPizza = new EventEmitter();
+  @Output() outsidePizza = new EventEmitter();
 
   @Input() item;
+  @Input() limpid;
+  @Input() indexPizza;
 
   constructor(private _orderService: OrderService){}
 
-  ngOnInit(){}
+  ngOnInit(){
+    this._currentPrice = Math.round(this.item.initPrice);
+    this._currentWeight = Math.round(this.item.initWeight);
+  }
 
   onSizeChecked(event){
     this._currentSize = event;
@@ -33,5 +42,26 @@ export class ItemlistComponent implements OnInit{
       this._orderService.updateOrderCounter();
     }
   }
+
+  openFullDescription(idOpen){
+    this._open = idOpen;
+  }
+
+  openOnOver(event){
+    event.currentTarget.classList.add('open');
+
+    this.hoveredPizza.emit(this.indexPizza);
+
+    // console.log(event.currentTarget.parentChild);
+  }
+
+  openOnOut(event){
+    event.currentTarget.classList.remove('open');
+    this.outsidePizza.emit(this.indexPizza);
+  }
+
+  onHover(event){
+    console.log(event.currentTarget);
+  };
 
 }

@@ -1,3 +1,10 @@
 <section id='list'>
-  <app-itemlist *ngFor='let item of pizzas' [item]='item'></app-itemlist>
+  <app-itemlist *ngFor='let item of pizzas, let indexPizza = index'
+                [item]='item'
+                [limpid]='_limpids[indexPizza]'
+                [indexPizza]='indexPizza'
+                (hoveredPizza)='onPizzaHover($event)'
+                (outsidePizza)='onPizzaOut($event)'>
+
+  </app-itemlist>
 </section>
