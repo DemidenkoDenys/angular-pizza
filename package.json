@@ -25,9 +25,11 @@
     "angular2-focus": "^1.1.0",
     "angular2-modal": "^2.0.3",
     "core-js": "^2.4.1",
+    "jquery": "^3.2.1",
     "ng-autofocus-directive": "0.0.3",
     "ng2focus": "0.0.2",
     "rxjs": "^5.0.1",
+    "slick-carousel": "^1.6.0",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },

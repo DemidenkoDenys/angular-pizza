@@ -73,7 +73,7 @@ readonly url: string;
 
 export interface SizesInterface{
   id: number;
-  size: number;
+  size: string;
   priceRatio: number;
   weightRatio: number;
 }

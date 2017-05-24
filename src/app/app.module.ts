@@ -16,6 +16,7 @@ import { OrderService } from './services/order.service';
 import { GetDataService } from './services/get-data.service';
 import { ItemsizeComponent } from './list/itemlist/itemsize/itemsize.component';
 import { BasketitemComponent } from './basket/basketitem/basketitem.component';
+import { SliderComponent } from './creator/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BasketitemComponent } from './basket/basketitem/basketitem.component';
     OrderComponent,
     ItemlistComponent,
     ItemsizeComponent,
-    BasketitemComponent
+    BasketitemComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,

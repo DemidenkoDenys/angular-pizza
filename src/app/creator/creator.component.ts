@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { GetDataService } from '../services/get-data.service';
+import 'slick-carousel';
 
 @Component({
   selector: 'app-creator',
@@ -15,8 +16,9 @@ export class CreatorComponent implements OnInit{
   creatorHeight: number = 500;
 
   private selectedSize;
-  private ingredients;
+  ingredients;
   private createdPizza;
+
 
   constructor(private _orderService: OrderService,
               private _getDataService: GetDataService){

@@ -1,32 +1,40 @@
 <div id='creator'>
-  <div class='circle'>
+  <div>
 
     <div class='base'>
+      <div class='base-img-wrapper'>
+        <img src="./img2/pizza-base.png" alt="">
+      </div>
+      <!-- <app-itemsize (sizeCheckedEvent)='onSizeChecked($event)'></app-itemsize> -->
 
-      <app-itemsize (sizeCheckedEvent)='onSizeChecked($event)'></app-itemsize>
-
-      <button class='total-price' (click)='onMakeOrder()'>
+      <!-- <button class='total-price' (click)='onMakeOrder()'>
         Заказать за {{ createdPizza.initPrice }} грн ({{ createdPizza.initWeight }} грамм)
-      </button>
+      </button> -->
     </div>
 
-    <div class='circle-item'
-        *ngFor='let item of ingredients'
-        [ngStyle]="{'left': item.left + 'px', 'top': item.top + 'px', 'background-image': 'url(' + item.url + ')' }"
-        [class.added]='!(item.added === 0)'
-        [class.addedAnimation]='!(item.added === 0)'
-        (click)='addIngredient($event, item)'
-        (contextmenu)='deleteIngredient($event, item)'>
+    <!-- <div class="ingredients-wrapper"> -->
+    <div class="ingredients-wrapper" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+      <div class='ingredient-item'
+          *ngFor='let item of ingredients'
+          [ngStyle]='{"background-image": "url(" + item.url + ")"}'
+          [class.added]='!(item.added === 0)'
+          [class.addedAnimation]='!(item.added === 0)'
+          (click)='addIngredient($event, item)'
+          (contextmenu)='deleteIngredient($event, item)'>
+          <p class='ingredient-count'
+            [class.zero]='item.added===0'>
+            {{ item.added }}
+            <i class="delete-icon material-icons"
+              [class.hide]='item.limit===item.added'
+              (click)='clearIngredient($event, item)'>delete</i>
+            <i class="add-icon material-icons">add</i>
+          </p>
 
-        <div class='ingredient-description'>
-          <span class='ingredient-title'>{{ item.name }}</span>
-          <span class='ingredient-priced'>{{ item.cost }} грн</span>
-        </div>
-
-        <p class='count'
-          (click)='clearIngredient($event, item)'
-          attr.data-count='{{ item.added }}'>
-        </p>
+          <div class='ingredient-description'>
+            <span class='ingredient-title'>{{ item.name }}</span>
+            <span class='ingredient-price'>+{{ item.cost * (item.added===0 ? 1 : item.added) }} грн</span>
+          </div>
+      </div>
     </div>
 
   </div>

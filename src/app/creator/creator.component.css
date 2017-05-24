@@ -1,129 +1,113 @@
-@keyframes addingIngredient{
-  from{ opacity: 1; }
-  50%{ opacity: 0; }
-  99%{ opacity: 0; }
-  from{ opacity: 1; }
-}
-
 #creator{
-  height: 650px;
-}
-
-.circle{
   position: relative;
+  height: 500px;
+  /*box-sizing: border-box;*/
+  /*overflow: hidden;*/
+  background: #642828;
+}
+
+.base-img-wrapper{
+  width: 400px;
+  height: 400px;
+  margin: 100px auto;
+}
+
+.base-img-wrapper img{
+  width: 100%;
   height: 100%;
-  width: 650px;
-  border: 1px solid black;
-  margin: 0 auto;
 }
 
-.base{
-  display: block;
+.ingredients-wrapper{
   position: absolute;
-  width: 200px;
-  height: 200px;
-  background-image: url(../img/pizza-base.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.total-price{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  bottom: -50px;
-  text-align: center;
-  font-family: Arial;
-  font-weight: bold;
-  color: darkblue;
-  font-size: 1.2em;
-}
-
-.circle .circle-item{
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  text-align: center;
-  cursor: pointer;
-  transition: 1s;
-  opacity: 1;
-}
-
-.circle .circle-item .count:after{
-  content: attr(data-count);
-  position: absolute;
-  display: none;
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 10px;
-  top: 0;
-  right: -10px;
-  color: white;
-  margin: 0;
-  line-height: 20px;
-  text-align: center;
-  z-index: 11;
-  font-family: Arial;
-  font-size: 14px;
-  letter-spacing: .2px;
-  font-weight: 900;
-}
-
-.circle .circle-item.addedAnimation{
-  animation: addingIngredient 2s ease-in-out;
-}
-
-.circle .circle-item.added .count:after{
-  display: block;
-}
-
-.circle .circle-item.added:hover .count:after{
-  right: 0px;
-  top: 10px;
-}
-
-.circle .circle-item.added .count:hover:after{
-  font-family: Material Icons;
-  content: '\e92b';
-}
-
-.circle .circle-item:hover{
-  margin-left: -20px;
-  margin-top: -20px;
-  width: 100px;
+  top: 100px;
   height: 100px;
+  margin-left: 50px;
 }
 
-.circle .circle-item:hover .ingredient-description{
-   display: block;
+.ingredient-item{
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 100px;
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, .3);
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center 10px;
+  cursor: pointer;
 }
 
 .ingredient-description{
   position: absolute;
-  display: none;
-  bottom: -25px;
-  background: rgba(0, 255, 255, .5);
-  z-index: 11;
-  padding: 5px;
-  border-radius: 10px;
+  bottom: 0;
+  color: white;
+  font-family: Arial;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 5px;
 }
 
-.ingredient-description > span{
-  display: inline-block;
-  width: auto;
+.ingredient-description .ingredient-title{
+  margin-left: 10px;
+}
+
+.ingredient-description .ingredient-price{
+  float: right;
+  margin-right: 10px;
+  color: green;
+}
+
+.ingredient-count{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  border-radius: 50%;
+  color: black;
+  background: yellow;
+  text-align: center;
   font-family: Arial;
+  font-size: 14px;
   font-weight: bold;
-  color: darkblue;
-  font-size: 1.2em;
+  margin: 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ingredient-count.zero{
+  display: none;
+}
+
+.hide{
+  display: none;
+}
+
+.ingredient-count i{
+  display: none;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  line-height: 18px;
+  background: red;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.add-icon{
+    background: lightgreen !important;
+}
+
+.ingredient-item:hover .ingredient-count.zero ,
+.ingredient-item:hover .ingredient-count.zero .add-icon{
+  display: block;
+}
+
+.ingredient-count:hover .delete-icon{
+  display: block;
 }

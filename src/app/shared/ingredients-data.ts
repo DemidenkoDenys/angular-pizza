@@ -17,7 +17,7 @@ export let ingredients = [
     url: '../img/creator/ingredient-2.png',
     left: 0,
     top: 0,
-    added: 0,
+    added: 2,
     initWeight: 50,
     limit: 3
   },

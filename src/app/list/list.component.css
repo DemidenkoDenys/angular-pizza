@@ -4,5 +4,6 @@
   justify-content: center;
   flex-flow: wrap;
   margin: 0 auto;
-  padding: 0 10%;
+  padding: 0 10% 50px 10%;
+  background: #642828;
 }

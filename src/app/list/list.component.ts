@@ -18,7 +18,6 @@ export class ListComponent {
                       .then(pizzas => { this.pizzas = pizzas;
                                         for(let i = 0, l = pizzas.length; i < l; i++)
                                           this._limpids.push(-1);
-                                        console.log(this._limpids);
                                       });
   }
 
