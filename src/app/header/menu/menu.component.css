@@ -25,14 +25,17 @@
 }
 
 .basket-item{
-  position: relative;
-  padding: 0 10px;
-  margin-left: auto;
+  position: fixed;
+  right: 0;
+  top: 100px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, .5);
 }
 
 .basket-item .basket-icon{
   font-size: 2em;
   line-height: 50px;
+  color: white;
 }
 
 .basket-item .basket-amount{

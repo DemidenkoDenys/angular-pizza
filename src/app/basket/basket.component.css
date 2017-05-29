@@ -6,7 +6,15 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
 
+.basket-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
 }
 
 .basket-wrapper{

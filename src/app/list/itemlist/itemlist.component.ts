@@ -34,12 +34,14 @@ export class ItemlistComponent implements OnInit{
     this._currentWeight = Math.round(this.item.initWeight * event.weightRatio);
   }
 
-  onMakeOrder(item){
+  onMakeOrder(item, e){
     if(!item.id)
       window.scrollTo(0, document.getElementById('creator').getBoundingClientRect().top);
     else{
-      this._orderService.makeOrder(this.item, this._currentSize);
-      this._orderService.updateOrderCounter();
+      if(e.currentTarget.className.indexOf('order-button') === 0 || e.target.className.indexOf('hidden-list-item') === 0){
+        this._orderService.makeOrder(this.item, this._currentSize);
+        this._orderService.updateOrderCounter();
+      }
     }
   }
 
@@ -49,19 +51,12 @@ export class ItemlistComponent implements OnInit{
 
   openOnOver(event){
     event.currentTarget.classList.add('open');
-
     this.hoveredPizza.emit(this.indexPizza);
-
-    // console.log(event.currentTarget.parentChild);
   }
 
   openOnOut(event){
     event.currentTarget.classList.remove('open');
     this.outsidePizza.emit(this.indexPizza);
   }
-
-  onHover(event){
-    console.log(event.currentTarget);
-  };
 
 }

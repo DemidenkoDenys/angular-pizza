@@ -65,9 +65,9 @@ export class OrderService {
                            this.order[this.order.length - 1].price + '_' +
                            this.order[this.order.length - 1].weight,
                            this.order[this.order.length - 1].description);
+    sessionStorage.setItem('заказ сделан', String(Date.now()));
 
-    console.log(sessionStorage);
-
+    console.log('заказ сделан: ', sessionStorage);
   }
 
   getOrderList(){
@@ -87,9 +87,16 @@ export class OrderService {
   }
 
   clearBasket(){
-    for(let i = 0, l = sessionStorage.length; i < l; i++)
-      if(/\d{1,3}_\d_\d{13}_\d{2,3}_\d{3,4}/g.test(sessionStorage.key(i)))
-        sessionStorage.removeItem(sessionStorage.key(i));
+    let tempSessionStorage = {};
+    for(let i = 0, l = sessionStorage.length; i < l; i++){
+      if(!(/\d{1,3}_\d{1,3}_\d{13}_\d{2,3}_\d{3,4}/g.test(sessionStorage.key(i))))
+        tempSessionStorage[sessionStorage.key(i)] = sessionStorage.getItem(sessionStorage.key(i));
+    }
+    sessionStorage.clear();
+
+    for(let key in tempSessionStorage){
+      sessionStorage.setItem(key, tempSessionStorage[key]);
+    }
     this.order = [];
     this.updateOrderCounter();
   }

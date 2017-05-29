@@ -16,7 +16,7 @@ import { OrderService } from './services/order.service';
 import { GetDataService } from './services/get-data.service';
 import { ItemsizeComponent } from './list/itemlist/itemsize/itemsize.component';
 import { BasketitemComponent } from './basket/basketitem/basketitem.component';
-import { SliderComponent } from './creator/slider/slider.component';
+import { CancelSelectDirective } from './directives/cancelSelect.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { SliderComponent } from './creator/slider/slider.component';
     ItemlistComponent,
     ItemsizeComponent,
     BasketitemComponent,
-    SliderComponent
+    CancelSelectDirective
   ],
   imports: [
     BrowserModule,

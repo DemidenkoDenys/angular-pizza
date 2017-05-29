@@ -1,15 +1,58 @@
 #creator{
   position: relative;
-  height: 500px;
-  /*box-sizing: border-box;*/
-  /*overflow: hidden;*/
-  background: #642828;
+  height: 650px;
+  background: #142828;
+  overflow: hidden;
 }
 
-.base-img-wrapper{
-  width: 400px;
-  height: 400px;
-  margin: 100px auto;
+.base-img-wrapper,
+.ingredient-big{
+  position: absolute;
+  display: block;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.ingredient-big{
+  width: 100%;
+  height: 100%;
+}
+
+.click-and-order{
+  position: absolute;
+  top: -350px;
+  right: -550px;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 90;
+  transition: 1s;
+  opacity: 0;
+
+}
+
+
+.give-more{
+  position: absolute;
+  top: 230px;
+  left: 80px;
+  z-index: 90;
+  transition: 1s;
+}
+
+.base.orderable{
+  cursor: pointer;
+}
+
+.base.orderable .ingredient-big{
+  cursor: pointer;
+}
+
+img.ingredient-big{
+  transition: 1.5s;
+  top: 0px;
 }
 
 .base-img-wrapper img{
@@ -19,9 +62,41 @@
 
 .ingredients-wrapper{
   position: absolute;
-  top: 100px;
+  top: 380px;
   height: 100px;
-  margin-left: 50px;
+  cursor: pointer;
+}
+
+.ingredient-intro,
+.ingredient-sum{
+  position: absolute;
+  top: 320px;
+  color: white;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.creator-title{
+  margin-top: 20px;
+  color: white;
+  font-family: Arial;
+  font-size: 36px;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}
+
+.ingredient-intro{
+  left: 20px;
+}
+
+.ingredient-sum{
+  right: 50px;
+}
+
+.ingredient-sum > span{
+  color: lightgreen;
 }
 
 .ingredient-item{
@@ -30,32 +105,53 @@
   width: 150px;
   height: 100px;
   margin-right: 10px;
-  background-color: rgba(0, 0, 0, .3);
-  background-size: 40%;
+  background-color: rgba(0, 0, 0, .2);
+  background-size: 60%;
   background-repeat: no-repeat;
-  background-position: center 10px;
+  background-position: center 15px;
   cursor: pointer;
+}
+
+.ingredient-item.added{
+  background-color: rgba(0, 0, 0, .6);
 }
 
 .ingredient-description{
   position: absolute;
   bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   color: white;
   font-family: Arial;
-  width: 100%;
   font-size: 14px;
   font-weight: bold;
-  padding-bottom: 5px;
 }
 
 .ingredient-description .ingredient-title{
-  margin-left: 10px;
+  position: absolute;
+  text-transform: lowercase;
+  left: 10px;
+  top: 5px;
 }
 
 .ingredient-description .ingredient-price{
-  float: right;
-  margin-right: 10px;
-  color: green;
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  color: grey;
+}
+
+.ingredient-description .ingredient-weight{
+  position: absolute;
+  left: 10px;
+  bottom: 5px;
+  color: grey;
+}
+
+.ingredient-description .ingredient-price.added,
+.ingredient-description .ingredient-weight.added{
+  color: lightgreen;
 }
 
 .ingredient-count{
@@ -75,10 +171,20 @@
   margin: 0;
   cursor: pointer;
   overflow: hidden;
+  z-index: 50;
 }
 
 .ingredient-count.zero{
   display: none;
+}
+
+.ingredient-count.zero:hover .delete-icon{
+  display: none;
+}
+
+.ingredient-count:hover .delete-icon{
+  display: block;
+  z-index: 200;
 }
 
 .hide{
@@ -108,6 +214,110 @@
   display: block;
 }
 
-.ingredient-count:hover .delete-icon{
+.scroll-icon{
+  position: absolute;
+  top: 410px;
+  z-index: 100;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.scroll-icon:hover{
+  background: rgba(255,255,255,.2);
+}
+
+.scroll-left{
+  left: 10px;
+  transform: rotate(90deg);
+}
+
+.scroll-right{
+  right: 10px;
+  transform: rotate(-90deg);
+}
+
+.ingredient-comment{
+  position: absolute;
+  color: grey;
+  left: 20px;
+  font-family: Arial;
+  font-style: italic;
+}
+
+.first-comment{
+  bottom: 30px;
+}
+
+.spisok{
+  bottom: 10px;
+}
+
+.ingredient-comment.added-ingredient{
+  bottom: 80px;
+  margin-left: 25px;
+}
+
+.ingredient-comment.added-ingredient > span{
+  left: -25px;
+  top: 0px;
+}
+
+.ingredient-comment.delete-all-ingredient{
+  bottom: 60px;
+  margin-left: 25px;
+}
+
+.delete-all-ingredient > span{
+  left: -25px;
+  top: 0;
+}
+
+.delete-all-ingredient > span > i{
   display: block;
+}
+
+.creator-size{
+  position: absolute;
+  width: auto;
+  height: auto;
+  left: 30px;
+  top: 100px;
+  z-index: 100;
+}
+
+.take-size{
+  position: absolute;
+  top: -60px;
+  left: 80px;
+  z-index: 90;
+  transition: 1s;
+}
+
+.clear-creator{
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(230, 28, 38, 0.8);
+  cursor: pointer;
+  transition: .5s;
+}
+
+.clear-creator .delete-icon{
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgb(90, 45, 45);
+  margin: 5px 0 0 5px;
+  font-size: 50px;
+  text-align: center;
+  line-height: 60px;
+}
+
+.clear-creator:hover .delete-icon{
+  color: rgb(90, 45, 45);
+  background-color: white;
 }

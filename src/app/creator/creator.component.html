@@ -1,26 +1,58 @@
 <div id='creator'>
-  <div>
+  <div cancelSelect (mouseout)='handlerWrapperOut($event)'>
 
-    <div class='base'>
-      <div class='base-img-wrapper'>
-        <img src="./img2/pizza-base.png" alt="">
+    <p class='creator-title'>Собери пиццу своей мечты</p>
+
+    <img src="../img2/icons/give-more.png" alt="" class="give-more">
+
+    <div class='base'
+      (click)='createdPizza.description !== "" ? onMakeOrder($event) : ""'
+      [class.orderable]='createdPizza.description !== ""'>
+
+      <img class='click-and-order'
+           src='../img2/icons/click-and-order.png' alt=""
+           [ngStyle]='{"opacity": createdPizza.description === "" ? "0" : "1"}'>
+
+      <div class='base-img-wrapper' [ngStyle]='{"width": 600 * selectedSize.weightRatio / 3 + "px", "height": 600 * selectedSize.weightRatio / 3 + "px"}'>
+        <img src="./img2/pizza/pizza-base.png" alt="пицца собери сам">
+
+        <img class='ingredient-big'
+            *ngFor='let img of ingredients'
+             src='{{_ingredientPath}}{{img.url}}-big.png'
+             alt='{{img.name}}'
+            [ngStyle]='{"opacity": img.added===0 ? "0" : "1"}'
+            />
       </div>
-      <!-- <app-itemsize (sizeCheckedEvent)='onSizeChecked($event)'></app-itemsize> -->
-
-      <!-- <button class='total-price' (click)='onMakeOrder()'>
-        Заказать за {{ createdPizza.initPrice }} грн ({{ createdPizza.initWeight }} грамм)
-      </button> -->
     </div>
 
-    <!-- <div class="ingredients-wrapper"> -->
-    <div class="ingredients-wrapper" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
-      <div class='ingredient-item'
+    <div class="creator-size">
+      <img src="../img2/icons/take-size.png" alt="" class="take-size">
+      <app-itemsize (sizeCheckedEvent)='onSizeChecked($event)'></app-itemsize>
+    </div>
+
+    <div class='scroll-icon scroll-left' [hidden]='!isLeftEnd' (click)='moveSlider(150)'><img src="./img2/icons/icone-scroll.gif" alt=""></div>
+    <div class='scroll-icon scroll-right' [hidden]='!isRightEnd' (click)='moveSlider(-150)'><img src="./img2/icons/icone-scroll.gif" alt=""></div>
+
+    <p class="ingredient-sum">Вес пиццы - <span>{{createdPizza.initWeight}} гр</span>, на сумму - <span>{{createdPizza.initPrice}} грн</span></p>
+
+    <div id='ingredient-slider' class="ingredients-wrapper draggable"
+        [ngStyle]='{"width": widthSlider + "px", "left": currentLeft + "px"}'
+        (mousedown)='handlerMouseDown($event)'
+        (mousemove)='handlerMouseMove($event)'
+        (mouseup)='handlerMouseUp($event)'
+        (dragstart)='cancelDragStart()'
+        (wheel)='handleWheel($event)'
+        (mousewheel)='handleWheel($event)'
+        (MozMousePixelScroll)='handleWheel($event)'>
+
+      <div class='ingredient-item draggable'
           *ngFor='let item of ingredients'
-          [ngStyle]='{"background-image": "url(" + item.url + ")"}'
+          [ngStyle]='{"background-image": "url(" + _ingredientPath + item.url + "-little.png)"}'
+          (dragstart)='cancelDragStart()'
           [class.added]='!(item.added === 0)'
-          [class.addedAnimation]='!(item.added === 0)'
           (click)='addIngredient($event, item)'
           (contextmenu)='deleteIngredient($event, item)'>
+
           <p class='ingredient-count'
             [class.zero]='item.added===0'>
             {{ item.added }}
@@ -30,12 +62,22 @@
             <i class="add-icon material-icons">add</i>
           </p>
 
-          <div class='ingredient-description'>
-            <span class='ingredient-title'>{{ item.name }}</span>
-            <span class='ingredient-price'>+{{ item.cost * (item.added===0 ? 1 : item.added) }} грн</span>
+          <div class='ingredient-description draggable'>
+            <span class='ingredient-title draggable'>{{ item.name }}</span>
+            <span class='ingredient-price draggable' [class.added]='item.added > 0'> {{item.added===0 ? '' : '+'}}{{ item.cost * (item.added===0 ? 1 : item.added) }} грн</span>
+            <span class='ingredient-weight draggable' [class.added]='item.added > 0'> {{item.added===0 ? '' : '+'}}{{ item.initWeight * (item.added===0 ? 1 : item.added) }} гр</span>
           </div>
       </div>
     </div>
+
+    <div class="clear-creator" [ngStyle]='{"opacity": createdPizza.description === "" ? "0" : "1"}'>
+      <i class="material-icons delete-icon" (click)='clearCreator()'>blur_off</i>
+    </div>
+
+    <p class="ingredient-comment first-comment">* нажмите на ингредиент, чтобы добавить его в пиццу</p>
+    <p class="ingredient-comment spisok">* листайте список колесиком мыши, перетягиванием и стрелками</p>
+    <p class="ingredient-comment added-ingredient"><span class='ingredient-count'>2</span> - количество добавленных ингредиентов</p>
+    <p class="ingredient-comment delete-all-ingredient"><span class='ingredient-count'><i class="delete-icon material-icons">delete</i></span> - удалить выбранный ингредиент из пиццы</p>
 
   </div>
 </div>

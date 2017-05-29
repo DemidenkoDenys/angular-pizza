@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { GetDataService } from '../services/get-data.service';
-import 'slick-carousel';
+import { ingredientPath } from '../shared/paths';
 
 @Component({
   selector: 'app-creator',
@@ -10,54 +10,39 @@ import 'slick-carousel';
 })
 export class CreatorComponent implements OnInit{
 
-  elementsCount: number;
-  initSize: number = 0;
-  elementSize: number = 50;
   creatorHeight: number = 500;
-
+  widthSlider: number = 0;
+  currentLeft: number = 0;
+  isLeftEnd = false;
+  isRightEnd = true;
+  dragObject = false;
+  offsetX: number = 0;
+  offsetSum: number = 0;
   private selectedSize;
-  ingredients;
+  private ingredients;
   private createdPizza;
-
+  private _ingredientPath;
 
   constructor(private _orderService: OrderService,
               private _getDataService: GetDataService){
     this.ingredients = _getDataService.getIngredients();
+    this.widthSlider = (this.ingredients.length * 10 + this.ingredients.length * 150);
     this.createdPizza = this._getDataService.getOnePizzaInformation(0);
-    this.elementsCount = this.ingredients.length;
-    this.selectedSize = {id: 0, size: 28, priceRatio: 1, weightRatio: 1 };
+    this.selectedSize = {id: 0, size: "S", priceRatio: 1, weightRatio: 1 };
   }
 
   ngOnInit(){
     this.creatorHeight = document.getElementById('creator').clientHeight;
-
-    let wrap = this.creatorHeight / 2 - this.elementSize / 2;
-    let radius = this.creatorHeight / 2 - this.elementSize;
-
-    for(let i = 0; i < this.elementsCount; i++){
-      this.ingredients[i].left = Math.round(wrap + radius * Math.sin(2 / this.elementsCount * i * Math.PI));
-      this.ingredients[i].top = Math.round(wrap + radius * Math.cos(2 / this.elementsCount * i * Math.PI));
-    }
+    this._ingredientPath = ingredientPath;
   }
-
-  moveIngredientField(item){
-    let initLeft = item.left, initTop = item.top;
-    item.left = this.creatorHeight / 2 - this.elementSize / 2;
-    item.top = this.creatorHeight / 2 - this.elementSize / 2;
-    setTimeout(function(){
-      item.left = initLeft;
-      item.top = initTop;
-    }, 1000);
-  }
-
 
   addIngredient(event: Event, item){
     event.preventDefault();
-    if(this.ingredients[item.id].added < this.ingredients[item.id].limit){
+    if(this.ingredients[item.id].added < this.ingredients[item.id].limit && Math.abs(this.offsetSum) < 10){
       this.ingredients[item.id].added++;
       this.updatePizzaInformation();
-      this.moveIngredientField(this.ingredients[item.id]);
     }
+    this.offsetSum = 0;
   }
 
   deleteIngredient(event: Event, item){
@@ -95,7 +80,7 @@ export class CreatorComponent implements OnInit{
 
   checkPizzaWeight(){
     let tempWeight = 100;
-    for(let i = 0; i < this.ingredients.length; i++)
+    for(let i = 0, l = this.ingredients.length; i < l; i++)
       if(this.ingredients[i].added > 0)
         tempWeight += Math.round(this.ingredients[i].added * this.ingredients[i].initWeight);
     this.createdPizza.initWeight = Math.round(tempWeight * this.selectedSize.weightRatio);
@@ -103,14 +88,14 @@ export class CreatorComponent implements OnInit{
 
   checkPizzaDescription(){
     let description = '';
-    for(let i = 0; i < this.ingredients.length; i++){
+    for(let i = 0, l = this.ingredients.length; i < l; i++){
       if(this.ingredients[i].added > 0)
         description += this.ingredients[i].name + ' - ' + this.ingredients[i].added + ' шт, ';
     }
     this.createdPizza.description = description.substr(0, description.length - 2);
   }
 
-  initCreator(){
+  clearCreator(){
     for(let i = 0, l = this.ingredients.length; i < l; i++)
       this.ingredients[i].added = 0;
 
@@ -119,11 +104,68 @@ export class CreatorComponent implements OnInit{
     this.updatePizzaInformation();
   }
 
-  onMakeOrder(){
-    // console.log(this.createdPizza);
+  onMakeOrder(event){
     this._orderService.makeOrder(this.createdPizza, this.selectedSize);
     this._orderService.updateOrderCounter();
-    this.initCreator();
+    this.clearCreator();
+  }
+
+  handlerMouseDown(e: any){
+    if(e.which === 1){
+      this.offsetX = e.x;
+      this.dragObject = e.target;
+    }
+  }
+
+  handlerMouseMove(e: any){
+    if(this.dragObject){
+      let offset = e.x - this.offsetX;
+      this.offsetX = e.x;
+      this.offsetSum += offset;
+      this.moveSlider(offset);
+    }
+  }
+
+  handlerMouseUp(e){
+    this.dragObject = false;
+  }
+
+  handlerWrapperOut(e: any){
+    if(!e.target.classList.contains('draggable'))
+      this.dragObject = false;
+  }
+
+  cancelDragStart(){
+    return false;
+  }
+
+
+
+  handleWheel(e){
+    e = e || window.event;
+    e.preventDefault();
+
+    let delta = e.deltaY || e.detail || e.wheelDelta;
+    this.moveSlider(delta);
+  }
+
+  moveSlider(offset){
+    let leftMargin = this.checkMoveMargins(offset).leftMargin;
+    let rightMargin = this.checkMoveMargins(offset).rightMargin;
+
+    if(leftMargin < 0 && rightMargin < 0) this.currentLeft = this.currentLeft + offset;
+    if(rightMargin >= 0) this.currentLeft = (this.widthSlider - document.documentElement.clientWidth) * -1;
+    if(leftMargin >= 0) this.currentLeft = 0;
+
+    this.isLeftEnd = leftMargin < 0;
+    this.isRightEnd = rightMargin < 0;
+  }
+
+  checkMoveMargins(offset){
+    return {
+      leftMargin: this.currentLeft + offset,
+      rightMargin: Math.abs(this.currentLeft - document.documentElement.clientWidth) - offset - parseInt(document.getElementById('ingredient-slider').style.width)
+    }
   }
 
 }
