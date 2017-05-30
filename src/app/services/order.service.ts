@@ -17,9 +17,13 @@ export class OrderService {
   private orderDate: Number;
   private basketCountUpdater = new Subject<number>();
   private basketUpdater = new Subject<number>();
+  private basketAdder = new Subject<string>();
+
+  public messageAdded = '';
 
   updateCount$ = this.basketCountUpdater.asObservable();
   updateBasket$ = this.basketUpdater.asObservable();
+  addToBasket$ = this.basketAdder.asObservable();
 
   constructor(){
     if(sessionStorage.length > 0){
@@ -65,9 +69,10 @@ export class OrderService {
                            this.order[this.order.length - 1].price + '_' +
                            this.order[this.order.length - 1].weight,
                            this.order[this.order.length - 1].description);
-    sessionStorage.setItem('заказ сделан', String(Date.now()));
 
-    console.log('заказ сделан: ', sessionStorage);
+    this.basketAdder.next(pizzaObj.name + ' добавлена в корзину');
+
+    // console.log('заказ сделан: ', sessionStorage);
   }
 
   getOrderList(){
@@ -81,6 +86,14 @@ export class OrderService {
   getOrderCount(){
     return this.order.length;
   }
+
+  getOrderSum(){
+    let sum = 0;
+    for(let i = 0, l = this.order.length; i < l; i++)
+      sum += this.order[i].price;
+    return sum;
+  }
+
 
   updateBasket(){
     this.basketUpdater.next(1);

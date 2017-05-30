@@ -1,7 +1,7 @@
 #creator{
   position: relative;
   height: 650px;
-  background: #142828;
+  background: rgb(100, 40, 40);
   overflow: hidden;
 }
 
@@ -217,7 +217,7 @@ img.ingredient-big{
 .scroll-icon{
   position: absolute;
   top: 410px;
-  z-index: 100;
+  z-index: 90;
   cursor: pointer;
   border-radius: 50%;
 }
@@ -282,7 +282,7 @@ img.ingredient-big{
   height: auto;
   left: 30px;
   top: 100px;
-  z-index: 100;
+  z-index: 50;
 }
 
 .take-size{

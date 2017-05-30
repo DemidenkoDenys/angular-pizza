@@ -34,7 +34,7 @@ export const pizzas = [
   {
     id: 4,
     name: 'Куриная',
-    description: '',
+    description: 'Классическая и все любимая курина пицца сэкономит деньги и насытит на весь день',
     url: '../img2/pizza/pizza-4.png',
     initPrice: 110,
     initWeight: 200
@@ -42,7 +42,7 @@ export const pizzas = [
   {
     id: 5,
     name: 'Фирменная',
-    description: '',
+    description: 'Больше всего ингредиентов именно в этой пицце',
     url: '../img2/pizza/pizza-5.png',
     initPrice: 210,
     initWeight: 200
@@ -50,7 +50,7 @@ export const pizzas = [
   {
     id: 6,
     name: 'Маринара',
-    description: '',
+    description: 'Маринара из морепродуктов с добавлением итальянского соуса',
     url: '../img2/pizza/pizza-6.png',
     initPrice: 150,
     initWeight: 200
@@ -58,7 +58,7 @@ export const pizzas = [
   {
     id: 7,
     name: 'Грибная',
-    description: '',
+    description: 'Исключительно грибы разных сортов не оставят равнодушных вегетарианцев',
     url: '../img2/pizza/pizza-7.png',
     initPrice: 90,
     initWeight: 200
@@ -66,7 +66,7 @@ export const pizzas = [
   {
     id: 8,
     name: 'Frutti di Mare',
-    description: '',
+    description: 'Секретный рецепт от итальянского шеф-повара',
     url: '../img2/pizza/pizza-8.png',
     initPrice: 220,
     initWeight: 200
@@ -74,7 +74,7 @@ export const pizzas = [
   {
     id: 9,
     name: 'Маргарина',
-    description: '',
+    description: 'Женский вариант, легкие ингредиенты для тех, кто хочет похудеть',
     url: '../img2/pizza/pizza-9.png',
     initPrice: 70,
     initWeight: 200

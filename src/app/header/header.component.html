@@ -1,12 +1,11 @@
-<header id='header'>
+<header cancelSelect id='header'>
 
   <div class='up-header'>
-    <a class='logo' href='#'><img class='logo-image' src='../img/logo.png'>{{ title }}</a>
+    <a pageScroll class='logo' href='#header' tabindex='-1'><img class='logo-image' src='../img2/logo.png'>{{ title }}</a>
   </div>
 
   <div class='down-header'>
     <app-menu (showBasket)='onShowBasket($event)'></app-menu>
-    <app-basket [hidden]='!basketShow' (hideBasket)='onHideBasket()'></app-basket>
   </div>
 
 </header>

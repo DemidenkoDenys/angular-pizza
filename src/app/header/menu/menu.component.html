@@ -1,7 +1,9 @@
 <nav id='menu'>
-  <a href='#' class='menu-item' *ngFor='let menuitem of menus'>{{ menuitem }}</a>
-  <a href='#' class='menu-item basket-item' (click)='onShowBasket($event)'>
-    <i class="material-icons basket-icon">shopping_basket</i>
-    <span class='basket-amount ordered'>{{ countOrderedItem }}</span>
+  <a pageScroll
+    *ngFor='let menuitem of menus, let i = index'
+     tabindex="{{i+100}}"
+     href='#{{menuitem.link}}'
+     class='menu-item'>
+     {{ menuitem.name }}
   </a>
 </nav>

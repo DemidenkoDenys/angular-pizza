@@ -10,17 +10,33 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class BasketComponent implements OnInit{
 
+  opened: boolean = false;
+  basketSum: number;
+  basketCounter: number;
+  message: string = '';
   fullOrderList = [];
   subscription: Subscription;
-  @Output() hideBasket = new EventEmitter();
+  countSubscription: Subscription;
 
   constructor(private _orderService: OrderService, private _getDataService: GetDataService){
+
     this.subscription = _orderService.updateBasket$.subscribe(
       () => { this.updateBasket(); });
-    this.updateBasket();
+
+    this.countSubscription = _orderService.updateCount$.subscribe(
+      counter => { this.basketCounter = counter; });
+
+    this.countSubscription = _orderService.addToBasket$.subscribe(
+      message => { this.message = message;
+                   setTimeout(() => { this.message = ''; }, 2000); });
+
+    this.basketCounter = _orderService.getOrderCount();
   }
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.updateBasket();
+    this.basketSum = this._orderService.getOrderSum();
+  }
 
   updateBasket(){
     let orderList = this._orderService.getOrderList();
@@ -43,17 +59,33 @@ export class BasketComponent implements OnInit{
         description: description
       });
     }
+
+    this.basketCounter = this.fullOrderList.length;
+    this.basketSum = this._orderService.getOrderSum();
+
     // console.log('Лист заказов', this.fullOrderList);
   }
 
-  onHideBasket(e: Event, forceClose: boolean){
-    if(e.srcElement.id === 'basket' || forceClose === true)
-      this.hideBasket.emit(false);
+  toggleBasket(){
+    this.opened = !this.opened;
+    if(this.opened) this.updateBasket();
   }
+
+  hideBasket(e){
+    if(e.target.id === 'basket' || e.target.className.indexOf('close-icon') !== -1)
+      this.opened = false;
+    else
+      e.preventDefault();
+  };
 
   onClearBasket(){
     this._orderService.clearBasket();
     this.updateBasket();
+    this.opened = false;
   }
 
+  onDeleteBasketItem(e){
+    if(!this.basketCounter)
+      this.opened = false;
+  }
 }

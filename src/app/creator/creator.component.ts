@@ -23,6 +23,9 @@ export class CreatorComponent implements OnInit{
   private createdPizza;
   private _ingredientPath;
 
+  private _currentIngredientWeight = [];
+  private _currentIngredientPrice = [];
+
   constructor(private _orderService: OrderService,
               private _getDataService: GetDataService){
     this.ingredients = _getDataService.getIngredients();
@@ -34,6 +37,16 @@ export class CreatorComponent implements OnInit{
   ngOnInit(){
     this.creatorHeight = document.getElementById('creator').clientHeight;
     this._ingredientPath = ingredientPath;
+    this.calculateWeightPrice();
+  }
+
+  calculateWeightPrice(){
+    this._currentIngredientWeight = [];
+    this._currentIngredientPrice = [];
+    for(let i = 0, l = this.ingredients.length; i < l; i++){
+      this._currentIngredientWeight[i] = Math.round(this.ingredients[i].initWeight * this.selectedSize.weightRatio * (this.ingredients[i].added===0 ? 1 : this.ingredients[i].added));
+      this._currentIngredientPrice[i] = Math.round(this.ingredients[i].cost * this.selectedSize.priceRatio * (this.ingredients[i].added===0 ? 1 : this.ingredients[i].added));
+    }
   }
 
   addIngredient(event: Event, item){
@@ -68,6 +81,7 @@ export class CreatorComponent implements OnInit{
     this.checkPizzaPrice();
     this.checkPizzaWeight();
     this.checkPizzaDescription();
+    this.calculateWeightPrice();
   };
 
   checkPizzaPrice(){

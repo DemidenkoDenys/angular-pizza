@@ -7,20 +7,23 @@
   display: none;
 }
 
+hr{
+  color: lightgrey;
+  margin: 0 20px;
+}
+
 .order-item > *{
-  /*border: 1px solid black;*/
   padding: 0 5px;
   line-height: 30px;
-  color: grey;
   cursor: pointer;
+}
+
+.order-item > *:not(:last-child){
+  font-family: Arial;
 }
 
 .order-item img{
   height: 30px;
-}
-
-.order-pizza-name{
-  width: 15%;
 }
 
 .correcting-order-pizza-price input{
@@ -28,27 +31,43 @@
 }
 
 .full-description{
-  display: none;
-  margin: 5px 20px 5px 100px;
   color: grey;
+  margin: 0 20px 10px 20px;
 }
 
-.full-description.show{
-  display: block;
+.order-item .order-pizza-price{
+  margin-left: auto;
+  color: black;
+  font-size: 20px;
 }
 
 .order-item .delete-pizza-order{
-  display: none;
+  display: block;
+  visibility: hidden;
   width: 25px;
-  margin-left: auto;
   cursor: pointer;
   overflow: hidden;
 }
 
 .order-item:hover .delete-pizza-order{
-  display: block;
+  visibility: visible;
 }
 
 .order-item .delete-pizza-order:hover{
   color: red;
+}
+
+.order-item .order-pizza-name{
+  width: 15%;
+  color: #642828;
+  font-weight: bold;
+}
+
+.order-pizza-size{
+  margin-right: auto;
+  color: #642828;
+}
+
+.order-pizza-date{
+  font-size: 12px;
 }

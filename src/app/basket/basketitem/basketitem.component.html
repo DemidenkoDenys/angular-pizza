@@ -1,10 +1,10 @@
 <li class='order-item'>
-  <img src='{{item.url}}' alt=""  (click)='toggleBasketItem = !toggleBasketItem; show1()'>
-  <span class='order-pizza-name' (click)='toggleBasketItem = !toggleBasketItem'>{{ item.name }}</span>
-  <span class='order-pizza-size' (click)='toggleBasketItem = !toggleBasketItem'>({{ item.size }} см)</span>
-  <span class='order-pizza-date' (click)='toggleBasketItem = !toggleBasketItem'>заказ сделан: {{ item.date }}</span>
-  <span class='order-pizza-price' (click)='toggleBasketItem = !toggleBasketItem'>{{item.price}}</span>
+  <img src='{{item.url}}' alt="">
+  <span class='order-pizza-name'>{{ item.name }}</span>
+  <span class='order-pizza-size'>{{ item.size }}</span>
+  <span class='order-pizza-date'>заказ сделан: {{ item.date }}</span>
+  <span class='order-pizza-price'>{{item.price}} грн</span>
   <span class='delete-pizza-order material-icons' (click)='deleteItem($event, item)'>delete_empty</span>
 </li>
 
-<p class='full-description' [class.show]='toggleBasketItem'>{{ item.description }}</p>
+<hr noshade size='1'/>

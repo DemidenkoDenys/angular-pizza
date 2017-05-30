@@ -1,4 +1,96 @@
+@font-face {font-family: "Hot Pizza";
+    src: url("../fonts/Hot Pizza/Hot Pizza.eot");
+    src: url("../fonts/Hot Pizza/Hot Pizza.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Hot Pizza/Hot Pizza.woff2") format("woff2"),
+    url("../fonts/Hot Pizza/Hot Pizza.woff") format("woff"),
+    url("../fonts/Hot Pizza/Hot Pizza.ttf") format("truetype"),
+    url("../fonts/Hot Pizza/Hot Pizza.svg#Hot Pizza") format("svg");
+}
+
 footer{
-  height: 200px;
-  background: lightgrey;
+  height: 260px;
+  background: #363637;
+  overflow: hidden;
+}
+
+footer > div{
+  text-align: center;
+  /*border: 1px solid white;*/
+}
+
+.logo{
+  display: block;
+  height: 100%;
+  font-family: "Hot Pizza";
+  color: rgb(163, 40, 58);
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.logo img{
+  height: 70%;
+}
+
+.upper-footer{
+  padding-top: 20px;
+  height: 140px;
+}
+
+.menu-footer{
+  height: 30px;
+  padding-bottom: 10px;
+}
+
+.menu-footer nav a{
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 10px;
+  font-family: Arial;
+  line-height: 30px;
+  color: rgb(163, 40, 58);
+}
+
+.menu-footer nav a:hover,
+.menu-footer nav a:focus{
+  color: lightgreen;
+}
+
+.lower-footer{
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  background: #2b2b2c;
+  color: #888888;
+  font-family: Arial;
+}
+
+.lower-footer > *{
+  /*border: 1px solid white;*/
+  margin-top: 10px;
+}
+
+.lower-footer > *:first-child,
+.lower-footer > *:last-child{
+  flex-grow: 1;
+  width: 200px;
+}
+
+.lower-footer > *:first-child{
+  font-size: 12px;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.lower-footer > *:nth-child(2){
+  flex-grow: 3;
+}
+
+.copyright > span{
+  display: block;
+  font-size: 12px;
+  text-align: right;
+  margin-right: 20px;
 }

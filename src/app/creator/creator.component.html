@@ -1,5 +1,5 @@
-<div id='creator'>
-  <div cancelSelect (mouseout)='handlerWrapperOut($event)'>
+<div id='creator' cancelSelect>
+  <div (mouseout)='handlerWrapperOut($event)'>
 
     <p class='creator-title'>Собери пиццу своей мечты</p>
 
@@ -35,7 +35,8 @@
 
     <p class="ingredient-sum">Вес пиццы - <span>{{createdPizza.initWeight}} гр</span>, на сумму - <span>{{createdPizza.initPrice}} грн</span></p>
 
-    <div id='ingredient-slider' class="ingredients-wrapper draggable"
+    <div id='ingredient-slider'
+        class="ingredients-wrapper draggable"
         [ngStyle]='{"width": widthSlider + "px", "left": currentLeft + "px"}'
         (mousedown)='handlerMouseDown($event)'
         (mousemove)='handlerMouseMove($event)'
@@ -46,7 +47,7 @@
         (MozMousePixelScroll)='handleWheel($event)'>
 
       <div class='ingredient-item draggable'
-          *ngFor='let item of ingredients'
+          *ngFor='let item of ingredients, let i = index'
           [ngStyle]='{"background-image": "url(" + _ingredientPath + item.url + "-little.png)"}'
           (dragstart)='cancelDragStart()'
           [class.added]='!(item.added === 0)'
@@ -64,8 +65,14 @@
 
           <div class='ingredient-description draggable'>
             <span class='ingredient-title draggable'>{{ item.name }}</span>
-            <span class='ingredient-price draggable' [class.added]='item.added > 0'> {{item.added===0 ? '' : '+'}}{{ item.cost * (item.added===0 ? 1 : item.added) }} грн</span>
-            <span class='ingredient-weight draggable' [class.added]='item.added > 0'> {{item.added===0 ? '' : '+'}}{{ item.initWeight * (item.added===0 ? 1 : item.added) }} гр</span>
+
+            <span class='ingredient-price draggable'
+                 [class.added]='item.added > 0'>
+              {{item.added===0 ? '' : '+'}}
+              {{ _currentIngredientPrice[i] }} грн
+            </span>
+
+            <span class='ingredient-weight draggable' [class.added]='item.added > 0'> {{item.added===0 ? '' : '+'}}{{ _currentIngredientWeight[i] }} гр</span>
           </div>
       </div>
     </div>

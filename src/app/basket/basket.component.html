@@ -1,17 +1,23 @@
-<div basket-icon></div>
+<div id='basket-icon' [class.added]='basketCounter' [class.show]="message.length>0" (click)='toggleBasket()'>
+  <i class="material-icons basket-icon">shopping_basket</i>
+  <span class='basket-amount' [class.ordered]='basketCounter>0'>{{ basketCounter }}</span>
+  <span class='message-added'>{{ message }}</span>
+</div>
 
-<div id='basket' (click)='onHideBasket($event, false)'>
+<div id='basket' (click)='hideBasket($event)' [class.open]='opened'>
+
   <div class='basket-wrapper'>
-    <h2 class='basket-title'>Корзина</h2>
-
     <ul class='order-list'>
-      <app-basketitem *ngFor='let item2 of fullOrderList' [item]='item2'></app-basketitem>
+      <app-basketitem *ngFor='let item2 of fullOrderList' [item]='item2' (deleteItemEvent)='onDeleteBasketItem($event)'></app-basketitem>
     </ul>
 
     <div class='control-wrapper'>
       <button class='make-order'>Оформить заказ</button>
-      <button class='discart-order' (click)='onClearBasket()'>Сбросить</button>
-      <button class='close-basket' (click)='onHideBasket($event, true)'>Закрыть</button>
+      <button class='close-basket'><i class="material-icons close-icon circle-button" (click)='hideBasket($event)'>close</i></button>
+      <button class='discart-order circle-button' (click)='onClearBasket()'><i class="material-icons circle-button delete-icon">delete</i></button>
     </div>
+
+    <span class="basket-sum">{{ basketSum }} грн</span>
+
   </div>
 </div>

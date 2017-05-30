@@ -8,7 +8,6 @@
 }
 
 #header{
-  border: 1px solid lightblue;
   display: flex;
   flex-direction: column;
 }
@@ -25,7 +24,6 @@
 }
 
 #header .down-header{
-  border: 1px solid blue;
   height: 50px;
 }
 

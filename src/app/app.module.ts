@@ -17,6 +17,9 @@ import { GetDataService } from './services/get-data.service';
 import { ItemsizeComponent } from './list/itemlist/itemsize/itemsize.component';
 import { BasketitemComponent } from './basket/basketitem/basketitem.component';
 import { CancelSelectDirective } from './directives/cancelSelect.directive';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { ShareModule } from 'ng2share/share.module';
+import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { CancelSelectDirective } from './directives/cancelSelect.directive';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ShareModule,
+    Angular2FontAwesomeModule,
+    Ng2PageScrollModule.forRoot()
   ],
   providers: [OrderService, GetDataService],
   bootstrap: [AppComponent]

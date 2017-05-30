@@ -27,7 +27,7 @@
   left: 0;
   top: 0;
   bottom: 0;
-  right: -100%;
+  right: -70%;
   overflow: hidden;
   z-index: 1;
 }
@@ -149,6 +149,10 @@
   font-size: 14px;
   text-align: center;
   background: none;
+}
+
+.order-button:focus ~ .weight{
+  display: none;
 }
 
 .order-button i{
