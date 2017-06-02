@@ -1,0 +1,18 @@
+<div class='input-wrapper'>
+  <input id='order-amount'
+         type="text"
+         name='orderAmount'
+         [textMask]="{mask: amountMask, guide: false, keepCharPositions: true}"
+         [(ngModel)]='amountModel'
+         [class.clear]='amountModel.length === 0'
+         (ngModelChange)='onChangeAmount()'
+         (blur)='validateAmount()'
+         [class.valid]='isAmountValid'
+         autocomplete="off"
+         required
+         >
+
+  <label class='label-wrapper' [ngClass]='amountModel.length>0 ? "fill" : "clear"' for="order-amount">Сумма</label>
+  <span class='tip amount'>{{_amountTip}}</span>
+  <span class='fa-icon grivnes'>грн</span>
+</div>

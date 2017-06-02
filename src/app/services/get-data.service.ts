@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { pizzas } from '../shared/pizza-data';
 import { sizes } from '../shared/sizes-data';
+import { cities } from '../shared/cities';
 import { ingredients } from '../shared/ingredients-data';
 
 @Injectable()
 export class GetDataService {
 
   private sizes: SizesInterface[] = sizes;
+  private cities;
   private pizzas: PizzaInterface[] = pizzas;
   private ingredients = ingredients;
 
   private _uniqueId: number = 0;
 
-  constructor(){}
+  constructor(){
+    this.cities = cities;
+  }
 
   getPizzaInformation(){
     return Promise.resolve(this.pizzas);
@@ -48,24 +52,26 @@ export class GetDataService {
     return this._uniqueId;
   }
 
+  getCities(){
+    return this.cities;
+  }
+
 }
 
-export interface PizzaInterface {
-  readonly id: number;
-  readonly name: string;
-  readonly description: string;
-  readonly url: string;
-           initPrice: number;
-  readonly initWeight: number;
+export interface PizzaInterface{
+   id: number;
+   name: string;
+   description: string;
+   url: string;
+   initPrice: number;
+   initWeight: number;
 }
 
 export interface IngredientInteface{
   id: number;
   name: string;
   cost: number;
-readonly url: string;
-  left: number;
-  top: number;
+  url: string;
   added: number;
   limit: number;
   initWeight: number;
@@ -76,4 +82,15 @@ export interface SizesInterface{
   size: string;
   priceRatio: number;
   weightRatio: number;
+}
+
+export interface FullOrderList{
+  id: number,
+  url: string,
+  name: string,
+  size:  string,
+  price: number,
+  weight: number,
+  date: number,
+  description: string
 }

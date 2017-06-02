@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+interface Menus {
+  name: string,
+  link: string
+}
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -7,7 +12,7 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent{
 
-  menus;
+  private menus: Menus[];
 
   constructor(){
     this.menus = [

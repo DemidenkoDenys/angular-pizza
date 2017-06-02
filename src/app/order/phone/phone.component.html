@@ -1,0 +1,20 @@
+<div class='input-wrapper'>
+  <input type="text"
+         id='order-tel'
+         name='orderTel'
+         [textMask]="{mask: phoneMask, guide: true, keepCharPositions: true }"
+         [(ngModel)]="phoneModel"
+         (ngModelChange)='onChangePhone()'
+         [class.clear]='phoneModel.length === 0'
+         [class.valid]='_isPhoneValid'
+         (blur)='validatePhone()'
+         autocomplete="off"
+         required>
+
+  <label class='label-wrapper'
+         [ngClass]='phoneModel.length>0 ? "fill" : "clear"'
+         for="order-tel">Телефон</label>
+
+  <fa class='fa-icon mobile' name='mobile'></fa>
+  <span class="tip amount">Телефон в формате (0XX) XXX-XXXX</span>
+</div>

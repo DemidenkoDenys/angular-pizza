@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { GetDataService } from '../../services/get-data.service';
+import { PizzaInterface } from '../../services/get-data.service';
 import { OrderService } from '../../services/order.service';
 
 @Component({
@@ -9,17 +9,15 @@ import { OrderService } from '../../services/order.service';
 })
 export class ItemlistComponent implements OnInit{
 
-  private _currentPrice;
-  private _currentWeight;
-  private _currentSize;
-  private _open: boolean = false;
+  private _currentPrice: number;
+  private _currentWeight: number;
+  private _currentSize: number;
 
-  @Output() hoveredPizza = new EventEmitter();
-  @Output() outsidePizza = new EventEmitter();
+  @Input() item: PizzaInterface;
+  @Input() limpid: number;
+  @Input() indexPizza: number;
 
-  @Input() item;
-  @Input() limpid;
-  @Input() indexPizza;
+  @Output() limpidChange = new EventEmitter();
 
   constructor(private _orderService: OrderService){}
 
@@ -30,33 +28,34 @@ export class ItemlistComponent implements OnInit{
 
   onSizeChecked(event){
     this._currentSize = event;
+
     this._currentPrice = Math.round(this.item.initPrice * event.priceRatio);
     this._currentWeight = Math.round(this.item.initWeight * event.weightRatio);
   }
 
-  onMakeOrder(item, e){
-    if(!item.id)
-      window.scrollTo(0, document.getElementById('creator').getBoundingClientRect().top);
-    else{
-      if(e.currentTarget.className.indexOf('order-button') === 0 || e.target.className.indexOf('hidden-list-item') === 0){
-        this._orderService.makeOrder(this.item, this._currentSize);
-        this._orderService.updateOrderCounter();
-      }
-    }
+  onMakeOrder(e){
+    if(this.item.id === 0)
+      this.scrollToCreator();
+
+    if(this.item.id !== 0 && (e.currentTarget.className.indexOf('order-button') === 0 || e.target.className.indexOf('hidden-list-item') === 0))
+      this._orderService.makeOrder(this.item, this._currentSize);
   }
 
-  openFullDescription(idOpen){
-    this._open = idOpen;
+  scrollToCreator(){
+    let timer = setInterval(
+      function(){
+        window.scrollTo(0, $(window).scrollTop() + 15);
+        if($(window).scrollTop() >= $('#creator').position().top)
+          clearInterval(timer) },
+     10);
   }
 
   openOnOver(event){
-    event.currentTarget.classList.add('open');
-    this.hoveredPizza.emit(this.indexPizza);
+    this.limpidChange.emit(1);
   }
 
   openOnOut(event){
-    event.currentTarget.classList.remove('open');
-    this.outsidePizza.emit(this.indexPizza);
+    this.limpidChange.emit(0);
   }
 
 }

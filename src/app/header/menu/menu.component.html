@@ -1,7 +1,7 @@
 <nav id='menu'>
   <a pageScroll
     *ngFor='let menuitem of menus, let i = index'
-     tabindex="{{i+100}}"
+     tabindex="{{i+1}}"
      href='#{{menuitem.link}}'
      class='menu-item'>
      {{ menuitem.name }}

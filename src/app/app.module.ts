@@ -20,6 +20,11 @@ import { CancelSelectDirective } from './directives/cancelSelect.directive';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { ShareModule } from 'ng2share/share.module';
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
+import { TextMaskModule } from 'angular2-text-mask';
+import { FioComponent } from './order/fio/fio.component';
+import { AddressComponent } from './order/address/address.component';
+import { PhoneComponent } from './order/phone/phone.component';
+import { AmountComponent } from './order/amount/amount.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,11 @@ import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-a
     ItemlistComponent,
     ItemsizeComponent,
     BasketitemComponent,
-    CancelSelectDirective
+    CancelSelectDirective,
+    FioComponent,
+    AddressComponent,
+    PhoneComponent,
+    AmountComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +51,7 @@ import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-a
     HttpModule,
     ShareModule,
     Angular2FontAwesomeModule,
+    TextMaskModule,
     Ng2PageScrollModule.forRoot()
   ],
   providers: [OrderService, GetDataService],

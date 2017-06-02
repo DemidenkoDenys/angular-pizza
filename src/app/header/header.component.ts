@@ -1,27 +1,14 @@
 import { Component } from '@angular/core';
-import { OrderService } from '../services/order.service';
 
 @Component({
-  templateUrl: './header.component.html',
   selector: 'app-header',
+  templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent{
 
-  title: string = 'Dream Pizza';
-  basketShow: boolean = false;
+  private title: string = 'Dream Pizza';
 
-  public logoImage = require('../img/logo.png');
+  constructor(){}
 
-  constructor(private _orderService: OrderService){}
-
-  onShowBasket(){
-    if(!this.basketShow)
-      this._orderService.updateBasket();
-    this.basketShow = !this.basketShow;
-  }
-
-  onHideBasket(){
-    this.basketShow = false;
-  }
 }

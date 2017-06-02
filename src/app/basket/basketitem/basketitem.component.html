@@ -2,9 +2,9 @@
   <img src='{{item.url}}' alt="">
   <span class='order-pizza-name'>{{ item.name }}</span>
   <span class='order-pizza-size'>{{ item.size }}</span>
-  <span class='order-pizza-date'>заказ сделан: {{ item.date }}</span>
+  <span class='order-pizza-date'>заказ сделан: {{ item.date | date:'d MMM yyyy г. (hh:mm:ss)' }}</span>
   <span class='order-pizza-price'>{{item.price}} грн</span>
-  <span class='delete-pizza-order material-icons' (click)='deleteItem($event, item)'>delete_empty</span>
+  <span class='delete-pizza-order material-icons' (click)='deleteItem(item)'>delete_empty</span>
 </li>
 
 <hr noshade size='1'/>

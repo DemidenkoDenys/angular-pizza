@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter, Output } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 interface OrderInterface {
@@ -72,6 +72,8 @@ export class OrderService {
 
     this.basketAdder.next(pizzaObj.name + ' добавлена в корзину');
 
+    this.updateOrderCounter();
+
     // console.log('заказ сделан: ', sessionStorage);
   }
 
@@ -99,7 +101,7 @@ export class OrderService {
     this.basketUpdater.next(1);
   }
 
-  clearBasket(){
+  clearOrder(){
     let tempSessionStorage = {};
     for(let i = 0, l = sessionStorage.length; i < l; i++){
       if(!(/\d{1,3}_\d{1,3}_\d{13}_\d{2,3}_\d{3,4}/g.test(sessionStorage.key(i))))
@@ -116,7 +118,7 @@ export class OrderService {
 
   deleteOrderItem(item){
     for(let i = 0, l = this.order.length; i < l; i++){
-      if(this.order[i].date === item.dateMS){
+      if(this.order[i].date === item.date){
         this.order.splice(i, 1); break;
       }
     }

@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
-import { GetDataService } from '../services/get-data.service';
+import { GetDataService, PizzaInterface, IngredientInteface, SizesInterface } from '../services/get-data.service';
 import { ingredientPath } from '../shared/paths';
 
 @Component({
@@ -10,19 +10,18 @@ import { ingredientPath } from '../shared/paths';
 })
 export class CreatorComponent implements OnInit{
 
-  creatorHeight: number = 500;
-  widthSlider: number = 0;
-  currentLeft: number = 0;
-  isLeftEnd = false;
-  isRightEnd = true;
-  dragObject = false;
   offsetX: number = 0;
   offsetSum: number = 0;
-  private selectedSize;
-  private ingredients;
-  private createdPizza;
-  private _ingredientPath;
-
+  isLeftEnd: boolean = false;
+  isRightEnd: boolean = true;
+  dragObject: boolean = false;
+  currentLeft: number = 0;
+  widthSlider: number = 0;
+  creatorHeight: number = 500;
+  private selectedSize: SizesInterface;
+  private createdPizza: PizzaInterface;
+  private ingredients: IngredientInteface[];
+  private _ingredientPath: string;
   private _currentIngredientWeight = [];
   private _currentIngredientPrice = [];
 
@@ -30,8 +29,8 @@ export class CreatorComponent implements OnInit{
               private _getDataService: GetDataService){
     this.ingredients = _getDataService.getIngredients();
     this.widthSlider = (this.ingredients.length * 10 + this.ingredients.length * 150);
-    this.createdPizza = this._getDataService.getOnePizzaInformation(0);
-    this.selectedSize = {id: 0, size: "S", priceRatio: 1, weightRatio: 1 };
+    this.createdPizza = _getDataService.getOnePizzaInformation(0);
+    this.selectedSize = _getDataService.getOneSizeInformation(0);
   }
 
   ngOnInit(){
@@ -49,8 +48,8 @@ export class CreatorComponent implements OnInit{
     }
   }
 
-  addIngredient(event: Event, item){
-    event.preventDefault();
+  addIngredient(e: Event, item){
+    e.preventDefault();
     if(this.ingredients[item.id].added < this.ingredients[item.id].limit && Math.abs(this.offsetSum) < 10){
       this.ingredients[item.id].added++;
       this.updatePizzaInformation();
@@ -58,15 +57,15 @@ export class CreatorComponent implements OnInit{
     this.offsetSum = 0;
   }
 
-  deleteIngredient(event: Event, item){
-    event.preventDefault();
+  deleteIngredient(e: Event, item){
+    e.preventDefault();
     if(this.ingredients[item.id].added > 0){
       this.ingredients[item.id].added--;
       this.updatePizzaInformation();
     }
   }
 
-  clearIngredient(event: Event, item){
+  clearIngredient(e: Event, item){
     event.stopPropagation();
     this.ingredients[item.id].added = 0;
     this.updatePizzaInformation();
@@ -76,13 +75,6 @@ export class CreatorComponent implements OnInit{
     this.selectedSize = event;
     this.updatePizzaInformation();
   }
-
-  updatePizzaInformation(){
-    this.checkPizzaPrice();
-    this.checkPizzaWeight();
-    this.checkPizzaDescription();
-    this.calculateWeightPrice();
-  };
 
   checkPizzaPrice(){
     let tempPrice = 50;
@@ -109,6 +101,13 @@ export class CreatorComponent implements OnInit{
     this.createdPizza.description = description.substr(0, description.length - 2);
   }
 
+  updatePizzaInformation(){
+    this.checkPizzaPrice();
+    this.checkPizzaWeight();
+    this.checkPizzaDescription();
+    this.calculateWeightPrice();
+  };
+
   clearCreator(){
     for(let i = 0, l = this.ingredients.length; i < l; i++)
       this.ingredients[i].added = 0;
@@ -118,20 +117,20 @@ export class CreatorComponent implements OnInit{
     this.updatePizzaInformation();
   }
 
-  onMakeOrder(event){
+  onMakeOrder(){
     this._orderService.makeOrder(this.createdPizza, this.selectedSize);
     this._orderService.updateOrderCounter();
     this.clearCreator();
   }
 
-  handlerMouseDown(e: any){
+  handlerMouseDown(e){
     if(e.which === 1){
       this.offsetX = e.x;
       this.dragObject = e.target;
     }
   }
 
-  handlerMouseMove(e: any){
+  handlerMouseMove(e){
     if(this.dragObject){
       let offset = e.x - this.offsetX;
       this.offsetX = e.x;
@@ -144,7 +143,7 @@ export class CreatorComponent implements OnInit{
     this.dragObject = false;
   }
 
-  handlerWrapperOut(e: any){
+  handlerWrapperOut(e){
     if(!e.target.classList.contains('draggable'))
       this.dragObject = false;
   }
@@ -152,8 +151,6 @@ export class CreatorComponent implements OnInit{
   cancelDragStart(){
     return false;
   }
-
-
 
   handleWheel(e){
     e = e || window.event;

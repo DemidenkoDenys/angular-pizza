@@ -6,10 +6,10 @@ import { GetDataService, PizzaInterface } from '../services/get-data.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent {
+export class ListComponent implements OnInit{
 
-  pizzas = [];
-  private _limpids = [];
+  private pizzas: PizzaInterface[] = [];
+  private _limpids: number[] = [];
 
   constructor(private _getPizzaData: GetDataService){}
 
@@ -21,16 +21,10 @@ export class ListComponent {
                                       });
   }
 
-  onPizzaHover(index){
-    this._limpids.fill(0);
-    this._limpids[index] = 1;
+  ngDoCheck(){
+    let i = this._limpids.indexOf(1);
+    this._limpids.fill(0, 0, i).fill(0, i + 1, this._limpids.length);
+    if(i + 1) return false;
+    this._limpids.fill(-1);
   }
-
-  onPizzaOut(index){
-    if(this._limpids.findIndex((e) => { return e === 1 }) !== -1)
-      this._limpids.fill(-1);
-    else
-      this._limpids[index] = 0;
-  }
-
 }

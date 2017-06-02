@@ -6,7 +6,7 @@
     <img src="../img2/icons/give-more.png" alt="" class="give-more">
 
     <div class='base'
-      (click)='createdPizza.description !== "" ? onMakeOrder($event) : ""'
+      (click)='createdPizza.description !== "" ? onMakeOrder() : ""'
       [class.orderable]='createdPizza.description !== ""'>
 
       <img class='click-and-order'

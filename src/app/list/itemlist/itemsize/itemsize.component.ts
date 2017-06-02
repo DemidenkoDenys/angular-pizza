@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { GetDataService } from '../../../services/get-data.service';
+import { GetDataService, SizesInterface } from '../../../services/get-data.service';
 
 @Component({
   selector: 'app-itemsize',
@@ -8,7 +8,7 @@ import { GetDataService } from '../../../services/get-data.service';
 })
 export class ItemsizeComponent implements OnInit {
 
-  sizes = [];
+  sizes: SizesInterface[] = [];
   uniqueIdSize: number;
   selectedSize: number = 0;
 

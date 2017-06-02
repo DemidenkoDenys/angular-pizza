@@ -4,15 +4,16 @@
   <span class='message-added'>{{ message }}</span>
 </div>
 
-<div id='basket' (click)='hideBasket($event)' [class.open]='opened'>
+<div id='basket' (click)='hideBasket($event)' [class.open]='isOpened'>
 
   <div class='basket-wrapper'>
+
     <ul class='order-list'>
-      <app-basketitem *ngFor='let item2 of fullOrderList' [item]='item2' (deleteItemEvent)='onDeleteBasketItem($event)'></app-basketitem>
+      <app-basketitem *ngFor='let item of fullOrderList' [item]='item' (deleteItemEvent)='onDeleteBasketItem()'></app-basketitem>
     </ul>
 
     <div class='control-wrapper'>
-      <button class='make-order'>Оформить заказ</button>
+      <button class='make-order' (click)='moveToOrder($event)'>Оформить заказ</button>
       <button class='close-basket'><i class="material-icons close-icon circle-button" (click)='hideBasket($event)'>close</i></button>
       <button class='discart-order circle-button' (click)='onClearBasket()'><i class="material-icons circle-button delete-icon">delete</i></button>
     </div>

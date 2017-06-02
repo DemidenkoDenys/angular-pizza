@@ -1,0 +1,23 @@
+<div class='input-wrapper'>
+
+    <input  type="text"
+            id='order-city'
+            [(ngModel)]='addressModel'
+            (ngModelChange)='onAddressChange()'
+            [class.clear]='addressModel.length === 0'
+            [class.valid]='isAddressValid'
+            (focus)='openCheckList()'
+            (blur)='hideCheckList()'
+            name='orderCity'
+            autocomplete="off"
+            required>
+
+  <label class='label-wrapper city-wrapper' [ngClass]='addressModel.length>0 ? "fill" : "clear"' for="order-city">Адрес</label>
+
+  <ul class='datalist' [class.active]='_isDatalistActive' id="cityDatalist">
+    <li *ngFor='let city of _citiesFiltered' (mousedown)='checkCity(city)'>{{ city }}</li>
+  </ul>
+
+  <span class='tip'></span>
+  <fa class='fa-icon' name='map-marker'></fa>
+</div>

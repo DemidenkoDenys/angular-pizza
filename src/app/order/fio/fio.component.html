@@ -1,0 +1,17 @@
+<div class='input-wrapper'>
+  <input type="text"
+         name='orderFio'
+         id='order-fio'
+         pattern="^[А-Яа-яЁё\s]+$"
+         [(ngModel)]="fioModel"
+         (ngModelChange)='onChangeFio()'
+         (blur)='validateFio()'
+         [class.valid]='isFioValid'
+         [class.clear]='fioModel.length === 0'
+         autocomplete="off"
+         required
+         >
+  <span class='tip'>{{ fioTip }}</span>
+  <label class='label-wrapper' [ngClass]='fioModel.length>0 ? "fill" : "clear"' for="order-fio">ФИО</label>
+  <fa class='fa-icon' name='user'></fa>
+</div>

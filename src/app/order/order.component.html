@@ -1,28 +1,18 @@
-<div id='order'>
-  <form action="">
+<div id='order' cancelSelect>
+  <form class='order-form'>
 
-    <div class='input-wrapper'>
-      <input type="text" id='order-fio'>
-      <label class='clear' for="order-fio">ФИО</label>
+    <app-fio [(initValue)]='_initFio'></app-fio>
+
+    <app-address [(initValue)]='_initAddress'></app-address>
+
+    <app-phone [(initValue)]='_initPhone'></app-phone>
+
+    <app-amount [(initValue)]='_initAmount'></app-amount>
+
+    <div class='button-wrapper'>
+      <button class='active' (click)='clearAllFields($event)'>Очистить</button>
+      <button [class.active]='_isFormValid' [disabled]='!_isFormValid' (click)='makeOrder($event)'>Заказать</button>
     </div>
-
-    <div class='input-wrapper'>
-      <input type="text" id='order-adr'>
-      <label class='clear' for="order-adr">Адрес</label>
-    </div>
-
-    <div class='input-wrapper'>
-      <input type="text" id='order-tel'>
-      <label class='fill' for="order-tel">Телефон</label>
-    </div>
-
-    <div class='input-wrapper'>
-      <input type="text" id='order-promo'>
-      <label class='fill' for="order-promo">Промо-код</label>
-    </div>
-
-    <button>Заказать</button>
-    <button>Очистить</button>
 
   </form>
 </div>

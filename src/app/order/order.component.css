@@ -1,68 +1,59 @@
-*:focus{
-  outline: none;
-}
-
 #order{
-  height: 400px;
-  background: url(../img/order-background.jpg);
+  font-family: Arial;
+  position: relative;
+  height: 600px;
+  padding-top: 100px;
+  overflow: hidden;
+  background: url(../img2/background-order.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
-
-#order form{
-  width: 30%;
-  padding: 50px 70px;
-  position: relative;
-}
-
-#order form .input-wrapper{
-  position: relative;
-  display: block;
-  height: 40px;
-  margin-bottom: 30px;
   box-sizing: border-box;
-
 }
 
-#order form input{
+#order *:focus{
+  outline: none;
+}
+
+.order-form{
+  position: relative;
   display: block;
-  width: 90%;
-  height: 30px;
-  padding: 5px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  color: white;
-
-  background: rgba(255, 255, 255, .2);
-  border: 2px solid rgba(250, 0, 250, .2);
-}
-
-#order form .input-wrapper label {
-  position: absolute;
-  display: block;
-  font-size: 1.3em;
-  color: white;
-  transition: 1s;
-  cursor: text;
-  left: 10px;
-}
-
-#order form .input-wrapper label.clear{
-  top: 10px;
-}
-
-#order form .input-wrapper label.fill{
-  top: -15px;
-  left: 0px;
-  font-size: 0.8em;
-}
-#order form input:focus{
+  box-shadow: 1px 1px 0 rgba(143, 121, 23, .1),
+              2px 2px 0 rgba(143, 121, 23, .1),
+              3px 3px 0 rgba(143, 121, 23, .1),
+              4px 4px 0 rgba(143, 121, 23, .1),
+              rgba(255, 255, 255, .3) -1px -1px 0,
+              rgba(255, 255, 255, .3) -2px -2px 0,
+              rgba(255, 255, 255, .3) -3px -3px 0,
+              rgba(255, 255, 255, .3) -4px -4px 0;
+  margin: 0 auto;
+  padding: 50px 70px;
   background: rgba(255, 255, 255, .6);
+  margin-bottom: 100px;
+  width: 500px;
+  height: 300px;
 }
 
-#order form input:focus + label.clear{
-  top: -15px;
-  left: 0px;
-  font-size: 0.8em;
+button{
+  display: inline-block;
+  background: rgba(34, 85, 86, 1);
+  height: 40px;
+  width: 40%;
+  text-shadow: 0px 3px 0px rgba(19, 61, 62, 1);
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #346a6b;
+  font-weight: bolder;
+}
+
+button.active{
+  color: #63d7d8;
+  cursor: pointer;
+}
+
+.button-wrapper{
+  /*border: 1px solid black;*/
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
