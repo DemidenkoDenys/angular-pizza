@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PizzaInterface } from '../../services/get-data.service';
+import { PizzaInterface } from '../../services/pizza.interface';
 import { OrderService } from '../../services/order.service';
 
 @Component({
@@ -34,6 +34,8 @@ export class ItemlistComponent implements OnInit{
   }
 
   onMakeOrder(e){
+    console.log(e.target.className);
+
     if(this.item.id === 0)
       this.scrollToCreator();
 

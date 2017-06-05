@@ -3,6 +3,7 @@ import { pizzas } from '../shared/pizza-data';
 import { sizes } from '../shared/sizes-data';
 import { cities } from '../shared/cities';
 import { ingredients } from '../shared/ingredients-data';
+import { PizzaInterface } from './pizza.interface';
 
 @Injectable()
 export class GetDataService {
@@ -56,16 +57,7 @@ export class GetDataService {
     return this.cities;
   }
 
-}
-
-export interface PizzaInterface{
-   id: number;
-   name: string;
-   description: string;
-   url: string;
-   initPrice: number;
-   initWeight: number;
-}
+};
 
 export interface IngredientInteface{
   id: number;
@@ -75,22 +67,11 @@ export interface IngredientInteface{
   added: number;
   limit: number;
   initWeight: number;
-}
+};
 
 export interface SizesInterface{
   id: number;
   size: string;
   priceRatio: number;
   weightRatio: number;
-}
-
-export interface FullOrderList{
-  id: number,
-  url: string,
-  name: string,
-  size:  string,
-  price: number,
-  weight: number,
-  date: number,
-  description: string
-}
+};

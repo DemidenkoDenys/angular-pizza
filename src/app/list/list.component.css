@@ -1,8 +1,5 @@
 #list{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-flow: wrap;
+  display: block;
   margin: 0 auto;
   padding: 0 10% 50px 10%;
   background: #642828;

@@ -58,7 +58,7 @@
             [class.zero]='item.added===0'>
             {{ item.added }}
             <i class="delete-icon material-icons"
-              [class.hide]='item.limit===item.added'
+              [class.hide]='item.added !== item.added'
               (click)='clearIngredient($event, item)'>delete</i>
             <i class="add-icon material-icons">add</i>
           </p>
@@ -81,7 +81,7 @@
       <i class="material-icons delete-icon" (click)='clearCreator()'>blur_off</i>
     </div>
 
-    <p class="ingredient-comment first-comment">* нажмите на ингредиент, чтобы добавить его в пиццу</p>
+    <p class="ingredient-comment first-comment">* нажмите на ингредиент, чтобы добавить его в пиццу (правая кнопка удалит один)</p>
     <p class="ingredient-comment spisok">* листайте список колесиком мыши, перетягиванием и стрелками</p>
     <p class="ingredient-comment added-ingredient"><span class='ingredient-count'>2</span> - количество добавленных ингредиентов</p>
     <p class="ingredient-comment delete-all-ingredient"><span class='ingredient-count'><i class="delete-icon material-icons">delete</i></span> - удалить выбранный ингредиент из пиццы</p>

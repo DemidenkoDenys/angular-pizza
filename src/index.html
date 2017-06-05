@@ -2,14 +2,27 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=9" />
   <title>Angular Pizza</title>
   <base href="/">
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+  <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+  <script src="node_modules/core-js/client/shim.min.js"></script>
+  <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+  <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
 </head>
 <body>
+
+  <noscript>
+   Для полной функциональности этого сайта необходимо включить JavaScript.
+   Вот <a href="http://www.enable-javascript.com/ru/" target="_blank">
+   инструкции, как включить JavaScript в вашем браузере</ a>.
+  </noscript>
+
   <app-root>
     <div class='preloader'></div>
   </app-root>

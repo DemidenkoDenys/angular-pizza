@@ -15,17 +15,19 @@
     </nav>
   </div>
 
-  <div class='lower-footer'>
-    <span>карта сайта</span>
+  <div class='lower-footer container-fluid'>
+    <span class='col-md-4'>карта сайта</span>
 
+  <span class="customizable col-md-4">
     <share-container
       direction="horizontal"
       [expandable]='false'
       [properties]="{title:'Пицца моей мечты', description: 'Самая лучшая пицца в городе с заказом онлайн', img:'../img/logo.png', via:'Angular2', hashtags:'dreampizza'}"
       [platforms]="['twitter','facebook','pinterest','googlePlus']">
     </share-container>
+  </span>
 
-    <div class='copyright'>
+    <div class='copyright col-md-4'>
       <span>© 2017 Проект "Angular Пицца"</span>
       <span>Разработано: Демиденко Денис</span>
     </div>

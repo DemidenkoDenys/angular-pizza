@@ -1,6 +1,9 @@
 #menu{
   display: flex;
   display: -webkit-flex;
+  display: -ms-flexbox;
+  flex-basis: 100%;
+  -js-display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: stretch;

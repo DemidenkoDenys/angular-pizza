@@ -25,6 +25,7 @@ import { FioComponent } from './order/fio/fio.component';
 import { AddressComponent } from './order/address/address.component';
 import { PhoneComponent } from './order/phone/phone.component';
 import { AmountComponent } from './order/amount/amount.component';
+import { AlertModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AmountComponent } from './order/amount/amount.component';
     ShareModule,
     Angular2FontAwesomeModule,
     TextMaskModule,
-    Ng2PageScrollModule.forRoot()
+    Ng2PageScrollModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [OrderService, GetDataService],
   bootstrap: [AppComponent]

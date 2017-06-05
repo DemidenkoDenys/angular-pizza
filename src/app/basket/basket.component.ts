@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrderService } from '../services/order.service';
-import { GetDataService, PizzaInterface, SizesInterface, FullOrderList } from '../services/get-data.service';
+import { GetDataService, SizesInterface } from '../services/get-data.service';
+import { PizzaInterface } from '../services/pizza.interface';
+import { FullOrderList } from '../services/order.interface';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -73,7 +75,7 @@ export class BasketComponent implements OnInit{
   }
 
   hideBasket(e){
-    if(e.target.id === 'basket' || e.target.className.indexOf('close-icon') !== -1)
+    if(e.target.id === 'basket' || e.target.className.indexOf('close-icon') !== -1 || e.target.className === 'close-basket')
       this.isOpened = false;
     else
       e.preventDefault();

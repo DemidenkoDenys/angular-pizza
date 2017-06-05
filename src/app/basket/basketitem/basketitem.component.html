@@ -1,9 +1,10 @@
-<li class='order-item'>
-  <img src='{{item.url}}' alt="">
-  <span class='order-pizza-name'>{{ item.name }}</span>
-  <span class='order-pizza-size'>{{ item.size }}</span>
-  <span class='order-pizza-date'>заказ сделан: {{ item.date | date:'d MMM yyyy г. (hh:mm:ss)' }}</span>
-  <span class='order-pizza-price'>{{item.price}} грн</span>
+<li class='order-item container-fluid'>
+  <span class='col-md-1'><img src='{{item.url}}' alt=""></span>
+  <span class='order-pizza-name col-md-3'>{{ item.name }}</span>
+  <span class='order-pizza-size col-md-1'>{{ item.size }}</span>
+  <span class='order-pizza-date col-md-4'>{{ formattedDate }}</span>
+   <!-- PIPE | date:'d MMM yyyy г. (hh:mm:ss)' NOT SUPPORTED IN IE -->
+  <span class='order-pizza-price col-md-2'>{{item.price}} грн</span>
   <span class='delete-pizza-order material-icons' (click)='deleteItem(item)'>delete_empty</span>
 </li>
 

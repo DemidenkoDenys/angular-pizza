@@ -26,7 +26,7 @@
     <span class='weight'>{{ _currentWeight }}гр</span>
   </div>
 
-  <div class="size-outer-wrapper">
+  <div class="size-outer-wrapper" *ngIf='item.id > 0'>
     <div class="size-move-wrapper">
       <app-itemsize (sizeCheckedEvent)='onSizeChecked($event)'></app-itemsize>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GetDataService, PizzaInterface } from '../services/get-data.service';
+import { GetDataService  } from '../services/get-data.service';
+import { PizzaInterface } from '../services/pizza.interface';
 
 @Component({
   selector: 'app-list',

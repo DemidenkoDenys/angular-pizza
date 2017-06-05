@@ -10,8 +10,8 @@
     <app-amount [(initValue)]='_initAmount'></app-amount>
 
     <div class='button-wrapper'>
-      <button class='active' (click)='clearAllFields($event)'>Очистить</button>
-      <button [class.active]='_isFormValid' [disabled]='!_isFormValid' (click)='makeOrder($event)'>Заказать</button>
+      <button class='active clear-button' (click)='clearAllFields($event)'>Очистить</button>
+      <button class='submit-button' [class.active]='_isFormValid' [disabled]='!_isFormValid' (click)='makeOrder($event)'>Заказать</button>
     </div>
 
   </form>

@@ -15,7 +15,6 @@ footer{
 
 footer > div{
   text-align: center;
-  /*border: 1px solid white;*/
 }
 
 .logo{
@@ -58,39 +57,27 @@ footer > div{
 
 .lower-footer{
   height: 70px;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: space-between;
+  display: block;
   background: #2b2b2c;
   color: #888888;
   font-family: Arial;
 }
 
 .lower-footer > *{
-  /*border: 1px solid white;*/
-  margin-top: 10px;
-}
-
-.lower-footer > *:first-child,
-.lower-footer > *:last-child{
-  flex-grow: 1;
-  width: 200px;
+  margin-top: 20px;
 }
 
 .lower-footer > *:first-child{
   font-size: 12px;
   text-align: left;
-  margin-left: 20px;
-}
-
-.lower-footer > *:nth-child(2){
-  flex-grow: 3;
 }
 
 .copyright > span{
   display: block;
   font-size: 12px;
   text-align: right;
-  margin-right: 20px;
+}
+
+.n2s-shareContainer share-button{
+   display: inline-block !important;
 }

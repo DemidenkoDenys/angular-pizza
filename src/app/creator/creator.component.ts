@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
-import { GetDataService, PizzaInterface, IngredientInteface, SizesInterface } from '../services/get-data.service';
+import { GetDataService, IngredientInteface, SizesInterface } from '../services/get-data.service';
+import { PizzaInterface } from '../services/pizza.interface';
 import { ingredientPath } from '../shared/paths';
 
 @Component({
@@ -66,7 +67,7 @@ export class CreatorComponent implements OnInit{
   }
 
   clearIngredient(e: Event, item){
-    event.stopPropagation();
+    e.stopPropagation();
     this.ingredients[item.id].added = 0;
     this.updatePizzaInformation();
   }

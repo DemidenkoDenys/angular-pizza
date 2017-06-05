@@ -1,5 +1,6 @@
 .list-item{
   position: relative;
+  display: inline-block;
   height: 500px;
   width: 200px;
   border-radius: 15px;
@@ -43,9 +44,11 @@
 
 .hidden-list-item{
   position: absolute;
+  display: block;
   width: 200px;
   height: 100%;
   z-index: 50;
+  background: rgba(0, 0, 0, 0.01);
 }
 
 .list-item.limpid > *{
